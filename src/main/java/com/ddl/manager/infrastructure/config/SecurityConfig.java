@@ -38,6 +38,7 @@ public class SecurityConfig {
         http.authorizeRequests()
                 .antMatchers("/register", "/login", "/css/**", "/js/**", "/images/**").permitAll()
                 .antMatchers("/api/test/**").permitAll()
+                .antMatchers("/statistics").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
