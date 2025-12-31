@@ -5,46 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81869619-7f80-46b2-8402-01081141b79b" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ddl/manager/domain/statistics/controller/StatisticsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ddl/manager/domain/statistics/dto/ApiStatistics.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ddl/manager/domain/statistics/service/StatisticsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ddl/manager/domain/statistics/service/impl/StatisticsServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ddl/manager/infrastructure/aspect/ApiCallStatisticsAspect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/statistics.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ddl/manager/infrastructure/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ddl/manager/infrastructure/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/DdlApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/DdlApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/auth/dto/RegisterDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/auth/dto/RegisterDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/auth/model/SecurityUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/auth/model/SecurityUser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/auth/model/UserEntity$UserEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/auth/model/UserEntity$UserEntityBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/auth/model/UserEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/auth/model/UserEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/auth/repository/RoleRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/auth/repository/RoleRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/auth/service/CustomUserDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/auth/service/CustomUserDetailsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/auth/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/auth/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/task/Manager/TaskManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/task/Manager/TaskManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/task/controller/DashboardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/task/controller/DashboardController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/task/controller/TestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/task/controller/TestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/task/model/TaskEntity$TaskEntityBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/task/model/TaskEntity$TaskEntityBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/task/model/TaskEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/task/model/TaskEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/task/repository/TaskRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/task/repository/TaskRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/task/repository/TaskRepositoryPort.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/task/repository/TaskRepositoryPort.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/task/repository/mybatis/TaskMyBatisRepositoryAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/domain/task/repository/mybatis/TaskMyBatisRepositoryAdapter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/infrastructure/config/DataInitializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/infrastructure/config/DataInitializer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/infrastructure/config/KafkaConsumerConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/infrastructure/config/KafkaConsumerConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/infrastructure/config/KafkaProducerConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/infrastructure/config/KafkaProducerConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/infrastructure/config/MyAccessDeniedHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/infrastructure/config/MyAccessDeniedHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/infrastructure/config/RedisConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/infrastructure/config/RedisConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/infrastructure/config/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/infrastructure/config/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/infrastructure/exception/BusinessException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/infrastructure/exception/BusinessException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/infrastructure/exception/ErrorCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/infrastructure/exception/ErrorCode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/infrastructure/exception/GlobalExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/infrastructure/exception/GlobalExceptionHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/infrastructure/exception/SystemErrorException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/infrastructure/exception/SystemErrorException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/shared/dto/AjaxResult.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/shared/dto/AjaxResult.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/shared/enums/NotificationStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/shared/enums/NotificationStatus.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/shared/enums/NotificationType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/shared/enums/NotificationType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/shared/enums/TaskPriority.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/shared/enums/TaskPriority.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/shared/enums/TaskStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/shared/enums/TaskStatus.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ddl/manager/shared/model/BaseEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/ddl/manager/shared/model/BaseEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/ddl/manager/DdlApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/ddl/manager/DdlApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/statistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/statistics.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/statistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/statistics.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +90,7 @@
       <option name="presentableId" value="Default" />
       <updated>1766994922696</updated>
       <workItem from="1766994924949" duration="5671000" />
-      <workItem from="1767150335887" duration="6630000" />
+      <workItem from="1767150335887" duration="7424000" />
     </task>
     <servers />
   </component>
