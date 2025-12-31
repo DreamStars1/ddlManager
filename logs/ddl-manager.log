@@ -95,3 +95,195 @@
 2025-12-31 14:19:41.909 [http-nio-8080-exec-3] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store anonymous SecurityContext
 2025-12-31 14:19:41.910 [http-nio-8080-exec-3] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store anonymous SecurityContext
 2025-12-31 14:19:41.910 [http-nio-8080-exec-3] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:20:12.145 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /statistics
+2025-12-31 14:20:12.146 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-12-31 14:20:12.146 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-31 14:20:12.147 [http-nio-8080-exec-4] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /statistics] with attributes [permitAll]
+2025-12-31 14:20:12.147 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /statistics
+2025-12-31 14:20:12.211 [http-nio-8080-exec-4] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store anonymous SecurityContext
+2025-12-31 14:20:12.213 [http-nio-8080-exec-4] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store anonymous SecurityContext
+2025-12-31 14:20:12.214 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:20:25.787 [http-nio-8080-exec-5] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /statistics
+2025-12-31 14:20:25.787 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-12-31 14:20:25.787 [http-nio-8080-exec-5] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-31 14:20:25.789 [http-nio-8080-exec-5] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /statistics] with attributes [permitAll]
+2025-12-31 14:20:25.789 [http-nio-8080-exec-5] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /statistics
+2025-12-31 14:20:25.856 [http-nio-8080-exec-5] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store anonymous SecurityContext
+2025-12-31 14:20:25.864 [http-nio-8080-exec-5] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store anonymous SecurityContext
+2025-12-31 14:20:25.864 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:20:28.952 [http-nio-8080-exec-6] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /tasks
+2025-12-31 14:20:28.952 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-12-31 14:20:28.954 [http-nio-8080-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-31 14:20:28.954 [http-nio-8080-exec-6] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Failed to authorize filter invocation [GET /tasks] with attributes [authenticated]
+2025-12-31 14:20:28.957 [http-nio-8080-exec-6] DEBUG o.s.s.web.savedrequest.HttpSessionRequestCache - Saved request http://localhost:8080/tasks to session
+2025-12-31 14:20:28.957 [http-nio-8080-exec-6] DEBUG o.s.security.web.DefaultRedirectStrategy - Redirecting to http://localhost:8080/login
+2025-12-31 14:20:28.957 [http-nio-8080-exec-6] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store empty SecurityContext
+2025-12-31 14:20:28.958 [http-nio-8080-exec-6] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store empty SecurityContext
+2025-12-31 14:20:28.958 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:20:28.974 [http-nio-8080-exec-7] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /login
+2025-12-31 14:20:28.975 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-12-31 14:20:28.975 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-31 14:20:28.977 [http-nio-8080-exec-7] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /login] with attributes [permitAll]
+2025-12-31 14:20:28.977 [http-nio-8080-exec-7] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /login
+2025-12-31 14:20:28.985 [http-nio-8080-exec-7] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store anonymous SecurityContext
+2025-12-31 14:20:28.986 [http-nio-8080-exec-7] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store anonymous SecurityContext
+2025-12-31 14:20:28.986 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:20:55.026 [http-nio-8080-exec-9] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /statistics
+2025-12-31 14:20:55.026 [http-nio-8080-exec-9] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-12-31 14:20:55.026 [http-nio-8080-exec-9] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-31 14:20:55.027 [http-nio-8080-exec-9] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /statistics] with attributes [permitAll]
+2025-12-31 14:20:55.027 [http-nio-8080-exec-9] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /statistics
+2025-12-31 14:20:55.136 [http-nio-8080-exec-9] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store anonymous SecurityContext
+2025-12-31 14:20:55.143 [http-nio-8080-exec-9] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store anonymous SecurityContext
+2025-12-31 14:20:55.143 [http-nio-8080-exec-9] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:20:57.069 [http-nio-8080-exec-10] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /statistics
+2025-12-31 14:20:57.070 [http-nio-8080-exec-10] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-12-31 14:20:57.070 [http-nio-8080-exec-10] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-31 14:20:57.070 [http-nio-8080-exec-10] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /statistics] with attributes [permitAll]
+2025-12-31 14:20:57.070 [http-nio-8080-exec-10] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /statistics
+2025-12-31 14:20:57.104 [http-nio-8080-exec-10] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store anonymous SecurityContext
+2025-12-31 14:20:57.111 [http-nio-8080-exec-10] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store anonymous SecurityContext
+2025-12-31 14:20:57.111 [http-nio-8080-exec-10] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:21:27.277 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /statistics
+2025-12-31 14:21:27.278 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-12-31 14:21:27.278 [http-nio-8080-exec-1] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-31 14:21:27.279 [http-nio-8080-exec-1] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /statistics] with attributes [permitAll]
+2025-12-31 14:21:27.279 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /statistics
+2025-12-31 14:21:27.312 [http-nio-8080-exec-1] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store anonymous SecurityContext
+2025-12-31 14:21:27.317 [http-nio-8080-exec-1] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store anonymous SecurityContext
+2025-12-31 14:21:27.317 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:21:58.119 [http-nio-8080-exec-3] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /statistics
+2025-12-31 14:21:58.119 [http-nio-8080-exec-3] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-12-31 14:21:58.119 [http-nio-8080-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-31 14:21:58.120 [http-nio-8080-exec-3] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /statistics] with attributes [permitAll]
+2025-12-31 14:21:58.120 [http-nio-8080-exec-3] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /statistics
+2025-12-31 14:21:58.146 [http-nio-8080-exec-3] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store anonymous SecurityContext
+2025-12-31 14:21:58.150 [http-nio-8080-exec-3] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store anonymous SecurityContext
+2025-12-31 14:21:58.150 [http-nio-8080-exec-3] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:22:29.126 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /statistics
+2025-12-31 14:22:29.126 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-12-31 14:22:29.126 [http-nio-8080-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-31 14:22:29.127 [http-nio-8080-exec-4] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /statistics] with attributes [permitAll]
+2025-12-31 14:22:29.127 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /statistics
+2025-12-31 14:22:29.157 [http-nio-8080-exec-4] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store anonymous SecurityContext
+2025-12-31 14:22:29.161 [http-nio-8080-exec-4] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store anonymous SecurityContext
+2025-12-31 14:22:29.161 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:22:59.928 [http-nio-8080-exec-6] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /statistics
+2025-12-31 14:22:59.928 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-12-31 14:22:59.928 [http-nio-8080-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-31 14:22:59.930 [http-nio-8080-exec-6] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /statistics] with attributes [permitAll]
+2025-12-31 14:22:59.931 [http-nio-8080-exec-6] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /statistics
+2025-12-31 14:22:59.962 [http-nio-8080-exec-6] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store anonymous SecurityContext
+2025-12-31 14:22:59.965 [http-nio-8080-exec-6] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Did not store anonymous SecurityContext
+2025-12-31 14:22:59.966 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:23:07.565 [http-nio-8080-exec-7] DEBUG org.springframework.security.web.FilterChainProxy - Securing POST /login
+2025-12-31 14:23:07.565 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to empty SecurityContext
+2025-12-31 14:23:07.746 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        userentity0_.id as id1_2_,
+        userentity0_.create_time as create_t2_2_,
+        userentity0_.update_time as update_t3_2_,
+        userentity0_.uuid as uuid4_2_,
+        userentity0_.email as email5_2_,
+        userentity0_.email_notification_enabled as email_no6_2_,
+        userentity0_.enabled as enabled7_2_,
+        userentity0_.password as password8_2_,
+        userentity0_.reminder_hours as reminder9_2_,
+        userentity0_.username as usernam10_2_ 
+    from
+        sys_user userentity0_ 
+    where
+        userentity0_.username=?
+2025-12-31 14:23:07.789 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        roles0_.user_id as user_id1_3_0_,
+        roles0_.role_id as role_id2_3_0_,
+        roleentity1_.id as id1_1_1_,
+        roleentity1_.code as code2_1_1_,
+        roleentity1_.name as name3_1_1_ 
+    from
+        sys_user_role roles0_ 
+    inner join
+        sys_role roleentity1_ 
+            on roles0_.role_id=roleentity1_.id 
+    where
+        roles0_.user_id=?
+2025-12-31 14:23:07.963 [http-nio-8080-exec-7] DEBUG o.s.s.authentication.dao.DaoAuthenticationProvider - Authenticated user
+2025-12-31 14:23:07.965 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.s.ChangeSessionIdAuthenticationStrategy - Changed session id from 9F7110175AD1C639D6F2D2AEECBAB803
+2025-12-31 14:23:07.967 [http-nio-8080-exec-7] DEBUG o.s.s.w.a.UsernamePasswordAuthenticationFilter - Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]
+2025-12-31 14:23:07.968 [http-nio-8080-exec-7] DEBUG o.s.security.web.DefaultRedirectStrategy - Redirecting to /
+2025-12-31 14:23:07.968 [http-nio-8080-exec-7] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@40ab5ab]
+2025-12-31 14:23:07.969 [http-nio-8080-exec-7] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@40ab5ab]
+2025-12-31 14:23:07.969 [http-nio-8080-exec-7] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:23:07.986 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /
+2025-12-31 14:23:07.986 [http-nio-8080-exec-8] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:23:07.986 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:23:07.987 [http-nio-8080-exec-8] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /] with attributes [authenticated]
+2025-12-31 14:23:07.987 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /
+2025-12-31 14:23:08.011 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:23:10.556 [http-nio-8080-exec-9] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /statistics
+2025-12-31 14:23:10.557 [http-nio-8080-exec-9] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:23:10.557 [http-nio-8080-exec-9] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:23:10.557 [http-nio-8080-exec-9] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /statistics] with attributes [permitAll]
+2025-12-31 14:23:10.558 [http-nio-8080-exec-9] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /statistics
+2025-12-31 14:23:10.589 [http-nio-8080-exec-9] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:23:40.719 [http-nio-8080-exec-10] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /statistics
+2025-12-31 14:23:40.720 [http-nio-8080-exec-10] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:23:40.720 [http-nio-8080-exec-10] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:23:40.720 [http-nio-8080-exec-10] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /statistics] with attributes [permitAll]
+2025-12-31 14:23:40.720 [http-nio-8080-exec-10] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /statistics
+2025-12-31 14:23:40.735 [http-nio-8080-exec-10] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:24:10.852 [http-nio-8080-exec-2] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /statistics
+2025-12-31 14:24:10.853 [http-nio-8080-exec-2] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:24:10.854 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:24:10.855 [http-nio-8080-exec-2] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /statistics] with attributes [permitAll]
+2025-12-31 14:24:10.855 [http-nio-8080-exec-2] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /statistics
+2025-12-31 14:24:10.888 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:24:41.131 [http-nio-8080-exec-3] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /statistics
+2025-12-31 14:24:41.131 [http-nio-8080-exec-3] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:24:41.132 [http-nio-8080-exec-3] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:24:41.132 [http-nio-8080-exec-3] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /statistics] with attributes [permitAll]
+2025-12-31 14:24:41.132 [http-nio-8080-exec-3] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /statistics
+2025-12-31 14:24:41.160 [http-nio-8080-exec-3] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:25:11.336 [http-nio-8080-exec-5] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /statistics
+2025-12-31 14:25:11.336 [http-nio-8080-exec-5] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:25:11.336 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:25:11.337 [http-nio-8080-exec-5] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /statistics] with attributes [permitAll]
+2025-12-31 14:25:11.337 [http-nio-8080-exec-5] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /statistics
+2025-12-31 14:25:11.361 [http-nio-8080-exec-5] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:25:41.503 [http-nio-8080-exec-6] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /statistics
+2025-12-31 14:25:41.504 [http-nio-8080-exec-6] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:25:41.504 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:25:41.505 [http-nio-8080-exec-6] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /statistics] with attributes [permitAll]
+2025-12-31 14:25:41.505 [http-nio-8080-exec-6] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /statistics
+2025-12-31 14:25:41.536 [http-nio-8080-exec-6] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:26:12.124 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /statistics
+2025-12-31 14:26:12.124 [http-nio-8080-exec-8] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:26:12.124 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:26:12.125 [http-nio-8080-exec-8] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /statistics] with attributes [permitAll]
+2025-12-31 14:26:12.125 [http-nio-8080-exec-8] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /statistics
+2025-12-31 14:26:12.149 [http-nio-8080-exec-8] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:26:43.119 [http-nio-8080-exec-9] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /statistics
+2025-12-31 14:26:43.119 [http-nio-8080-exec-9] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:26:43.119 [http-nio-8080-exec-9] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:26:43.120 [http-nio-8080-exec-9] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /statistics] with attributes [permitAll]
+2025-12-31 14:26:43.120 [http-nio-8080-exec-9] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /statistics
+2025-12-31 14:26:43.142 [http-nio-8080-exec-9] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:27:14.120 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /statistics
+2025-12-31 14:27:14.122 [http-nio-8080-exec-1] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:27:14.122 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:27:14.122 [http-nio-8080-exec-1] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /statistics] with attributes [permitAll]
+2025-12-31 14:27:14.122 [http-nio-8080-exec-1] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /statistics
+2025-12-31 14:27:14.144 [http-nio-8080-exec-1] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:27:45.158 [http-nio-8080-exec-2] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /statistics
+2025-12-31 14:27:45.159 [http-nio-8080-exec-2] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:27:45.159 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:27:45.160 [http-nio-8080-exec-2] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /statistics] with attributes [permitAll]
+2025-12-31 14:27:45.160 [http-nio-8080-exec-2] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /statistics
+2025-12-31 14:27:45.231 [http-nio-8080-exec-2] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2025-12-31 14:28:16.148 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Securing GET /statistics
+2025-12-31 14:28:16.149 [http-nio-8080-exec-4] DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:28:16.149 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Set SecurityContextHolder to SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=com.ddl.manager.domain.auth.model.SecurityUser@2284f09c, Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=0:0:0:0:0:0:0:1, SessionId=9F7110175AD1C639D6F2D2AEECBAB803], Granted Authorities=[ROLE_USER]]]
+2025-12-31 14:28:16.149 [http-nio-8080-exec-4] DEBUG o.s.s.w.access.intercept.FilterSecurityInterceptor - Authorized filter invocation [GET /statistics] with attributes [permitAll]
+2025-12-31 14:28:16.149 [http-nio-8080-exec-4] DEBUG org.springframework.security.web.FilterChainProxy - Secured GET /statistics
+2025-12-31 14:28:16.185 [http-nio-8080-exec-4] DEBUG o.s.s.web.context.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
