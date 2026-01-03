@@ -7,4 +7,5 @@ import java.util.List;
 public interface StatisticsService {
     void incrementCallCount(String apiName, String apiPath);
     List<ApiStatistics> getAllStatistics();
+    void resetAllStatistics();
 }

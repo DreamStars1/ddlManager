@@ -1,5 +1,6 @@
 package com.ddl.manager.domain.task.controller;
 
+import com.ddl.manager.domain.statistics.annotation.ApiStatistics;
 import com.ddl.manager.domain.task.dto.ProgressDTO;
 import com.ddl.manager.domain.task.dto.TaskDTO;
 import com.ddl.manager.domain.task.model.TaskEntity;
@@ -44,6 +45,7 @@ public class TaskController {
      * @param size 每页大小
      * @return 任务列表视图
      */
+    @ApiStatistics(name = "获取任务列表", path = "/tasks")
     @GetMapping
     public String listTasks(Model model,
                            @RequestParam(required = false) TaskStatus status,
@@ -75,6 +77,7 @@ public class TaskController {
      * @param model 模型
      * @return 任务详情视图
      */
+    @ApiStatistics(name = "获取任务详情", path = "/tasks/{uuid}")
     @GetMapping("/{uuid}")
     public String taskDetail(@PathVariable String uuid, Model model) {
         Long userId = SecurityUtils.getCurrentUserId();
@@ -99,6 +102,7 @@ public class TaskController {
      * @param model 模型
      * @return 任务表单视图
      */
+    @ApiStatistics(name = "新建任务页面", path = "/tasks/new")
     @GetMapping("/new")
     public String newTask(Model model) {
         if (!model.containsAttribute("taskDTO")) {
@@ -121,6 +125,7 @@ public class TaskController {
      * @param redirectAttributes 重定向属性
      * @return 重定向地址
      */
+    @ApiStatistics(name = "创建任务", path = "/tasks")
     @PostMapping
     public String createTask(@Valid @ModelAttribute TaskDTO taskDTO,
                             BindingResult bindingResult,
@@ -155,6 +160,7 @@ public class TaskController {
      * @param model 模型
      * @return 任务表单视图
      */
+    @ApiStatistics(name = "编辑任务页面", path = "/tasks/{uuid}/edit")
     @GetMapping("/{uuid}/edit")
     public String editTask(@PathVariable String uuid, Model model) {
         Long userId = SecurityUtils.getCurrentUserId();
@@ -194,6 +200,7 @@ public class TaskController {
      * @param redirectAttributes 重定向属性
      * @return 重定向地址
      */
+    @ApiStatistics(name = "更新任务", path = "/tasks/{uuid}")
     @PostMapping("/{uuid}")
     public String updateTask(@PathVariable String uuid,
                             @Valid @ModelAttribute TaskDTO taskDTO,
@@ -229,6 +236,7 @@ public class TaskController {
      * @param redirectAttributes 重定向属性
      * @return 重定向地址
      */
+    @ApiStatistics(name = "删除任务", path = "/tasks/{uuid}/delete")
     @PostMapping("/{uuid}/delete")
     public String deleteTask(@PathVariable String uuid,
                             RedirectAttributes redirectAttributes) {
@@ -254,6 +262,7 @@ public class TaskController {
      * @param model 模型
      * @return 进度记录视图
      */
+    @ApiStatistics(name = "进度记录页面", path = "/tasks/{uuid}/progress")
     @GetMapping("/{uuid}/progress")
     public String progressPage(@PathVariable String uuid, Model model) {
         Long userId = SecurityUtils.getCurrentUserId();
@@ -286,6 +295,7 @@ public class TaskController {
      * @param redirectAttributes 重定向属性
      * @return 重定向地址
      */
+    @ApiStatistics(name = "更新任务进度", path = "/tasks/{uuid}/progress")
     @PostMapping("/{uuid}/progress")
     public String updateProgress(@PathVariable String uuid,
                                 @Valid @ModelAttribute ProgressDTO progressDTO,
@@ -321,6 +331,7 @@ public class TaskController {
      * @param status 任务状态
      * @return 响应结果
      */
+    @ApiStatistics(name = "更新任务状态", path = "/tasks/{uuid}/status")
     @PostMapping("/{uuid}/status")
     @ResponseBody
     public AjaxResult updateStatus(@PathVariable String uuid,

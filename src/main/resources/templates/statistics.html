@@ -203,6 +203,9 @@
     <button id="refreshBtn" class="btn refresh-btn">
         刷新数据
     </button>
+    <button id="resetBtn" class="btn refresh-btn" style="margin-left: 10px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+        重置统计数据
+    </button>
 
     <!-- 图表区域（网格布局，统一样式） -->
     <div class="chart-row">
@@ -276,7 +279,7 @@
     // 加载统计数据（AJAX动态获取，与Thymeleaf服务端渲染互补）
     function loadStatisticsData() {
         $.get("/statistics/api/data", function(response) {
-            if (response.code === 200 && response.data) {
+            if (response.code === 20000 && response.data) {
                 renderTable(response.data);
                 renderCharts(response.data);
             }
@@ -398,6 +401,31 @@
         // labels: statistics.map(stat => formatTime(stat.lastCallTime)),
     }
 
+    function resetStatisticsData() {
+        // 弹出确认框，防止误操作
+        if (!confirm('确定要重置所有API统计数据吗？此操作不可恢复！')) {
+            return;
+        }
+
+
+        $.ajax({
+            url: "/statistics/api/reset",
+            type: "POST",
+            dataType: "json",
+            success: function(response) {
+                if (response.code === 20000) {
+                    location.reload();
+                } else {
+                    alert("重置失败：" + (response.msg || "服务器异常"));
+                }
+            },
+            error: function(xhr, status, error) {
+                alert("重置请求失败：" + error);
+            }
+        });
+    }
+
+
     // 页面加载完成后初始化
     $(document).ready(function() {
         // 初始化时，先基于Thymeleaf服务端渲染的数据渲染图表
@@ -436,7 +464,12 @@
 
         // 刷新按钮事件
         $("#refreshBtn").click(function() {
-            location.reload();
+            // location.reload();
+            loadStatisticsData();
+        });
+
+        $("#resetBtn").click(function() {
+            resetStatisticsData();
         });
 
         // 自动刷新（每30秒）

@@ -75,4 +75,18 @@ public class StatisticsServiceImpl implements StatisticsService {
 
         return result;
     }
+
+    @Override
+    public void resetAllStatistics() {
+        // 1. 重置Redis中的所有API统计数据（精准匹配前缀）
+        // 匹配 "api_stats:" 开头的所有Key
+        Set<String> allStatsKeys = redisTemplate.keys(REDIS_KEY_PREFIX + "*");
+        if (allStatsKeys != null && !allStatsKeys.isEmpty()) {
+            // 批量删除所有匹配的Key（高效批量操作）
+            redisTemplate.delete(allStatsKeys);
+        }
+
+        // 2. 重置内存中的统计数据
+        inMemoryStats.clear();
+    }
 }

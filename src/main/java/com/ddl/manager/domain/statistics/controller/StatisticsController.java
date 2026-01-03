@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -33,5 +34,18 @@ public class StatisticsController {
     @ResponseBody
     public AjaxResult getStatisticsData() {
         return AjaxResult.ok(statisticsService.getAllStatistics());
+    }
+
+    @PostMapping("/api/reset")
+    @ResponseBody
+    public AjaxResult resetAllStatistics() {
+        System.out.println(66666666);
+        try {
+            // 调用Service中的重置方法（你已实现的resetAllStatistics）
+            statisticsService.resetAllStatistics();
+            return AjaxResult.ok("统计数据重置成功！");
+        } catch (Exception e) {
+            return AjaxResult.error("统计数据重置失败：" + e.getMessage());
+        }
     }
 }
