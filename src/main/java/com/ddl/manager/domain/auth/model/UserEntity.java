@@ -6,20 +6,20 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Index;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * 用户实体
+ * 必须实现Serializable接口以支持Redis序列化
  * @author developer
  * @since 2025-12-13
  */
@@ -34,7 +34,9 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserEntity extends BaseEntity {
+public class UserEntity extends BaseEntity implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /** 用户名 */
     @Column(unique = true, nullable = false, length = 50)
@@ -52,7 +54,6 @@ public class UserEntity extends BaseEntity {
     @Column(nullable = false)
     @Builder.Default
     private Boolean enabled = true;
-
 
     /** 提醒阈值（小时），默认24小时前提醒 */
     @Column(nullable = false)
@@ -73,4 +74,11 @@ public class UserEntity extends BaseEntity {
     )
     @Builder.Default
     private Set<RoleEntity> roles = new HashSet<>();
+
+    /**
+     * 转换为SecurityUser
+     */
+    public SecurityUser toSecurityUser() {
+        return new SecurityUser(this);
+    }
 }

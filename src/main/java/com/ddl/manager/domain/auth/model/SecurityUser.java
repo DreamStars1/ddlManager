@@ -4,15 +4,19 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 /**
  * Spring Security用户详情
+ * 必须实现Serializable接口以支持Redis序列化
  * @author developer
  * @since 2025-12-13
  */
-public class SecurityUser implements UserDetails {
+public class SecurityUser implements UserDetails, Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /** 用户实体 */
     private final UserEntity user;
@@ -67,18 +71,10 @@ public class SecurityUser implements UserDetails {
     }
 
     /**
-     * 获取用户UUID
-     * @return 用户UUID
+     * 获取用户实体
+     * @return 用户实体
      */
-    public String getUserUuid() {
-        return user.getUuid();
-    }
-
-    /**
-     * 获取用户邮箱
-     * @return 邮箱
-     */
-    public String getEmail() {
-        return user.getEmail();
+    public UserEntity getUser() {
+        return user;
     }
 }

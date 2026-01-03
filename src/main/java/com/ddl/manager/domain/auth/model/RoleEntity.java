@@ -1,24 +1,21 @@
 package com.ddl.manager.domain.auth.model;
 
+import com.ddl.manager.shared.model.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * 角色实体
- * @author dzhenghaipei
+ * 必须实现Serializable接口以支持Redis序列化
+ * @author developer
  * @since 2025-12-13
  */
 @Entity
@@ -28,23 +25,19 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RoleEntity {
+public class RoleEntity extends BaseEntity implements Serializable {
 
-    /** 角色ID */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private static final long serialVersionUID = 1L;
 
-    /** 角色标识，如 ROLE_USER, ROLE_ADMIN */
+    /** 角色代码，如 ROLE_ADMIN, ROLE_USER */
     @Column(unique = true, nullable = false, length = 50)
     private String code;
 
-    /** 角色名称，如 普通用户, 管理员 */
+    /** 角色名称，如 管理员, 普通用户 */
     @Column(nullable = false, length = 50)
     private String name;
 
-    /** 关联的用户 */
-    @ManyToMany(mappedBy = "roles")
-    @Builder.Default
-    private Set<UserEntity> users = new HashSet<>();
+    /** 角色描述 */
+    @Column(length = 200)
+    private String description;
 }

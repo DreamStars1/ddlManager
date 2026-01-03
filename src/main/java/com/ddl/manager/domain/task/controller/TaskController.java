@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import com.ddl.manager.infrastructure.annotation.RequiresPermission;
 
 import javax.validation.Valid;
 import java.util.Arrays;
@@ -44,6 +45,7 @@ public class TaskController {
      * @param size 每页大小
      * @return 任务列表视图
      */
+
     @GetMapping
     public String listTasks(Model model,
                            @RequestParam(required = false) TaskStatus status,
@@ -75,6 +77,7 @@ public class TaskController {
      * @param model 模型
      * @return 任务详情视图
      */
+
     @GetMapping("/{uuid}")
     public String taskDetail(@PathVariable String uuid, Model model) {
         Long userId = SecurityUtils.getCurrentUserId();
@@ -121,6 +124,7 @@ public class TaskController {
      * @param redirectAttributes 重定向属性
      * @return 重定向地址
      */
+
     @PostMapping
     public String createTask(@Valid @ModelAttribute TaskDTO taskDTO,
                             BindingResult bindingResult,
@@ -229,6 +233,7 @@ public class TaskController {
      * @param redirectAttributes 重定向属性
      * @return 重定向地址
      */
+
     @PostMapping("/{uuid}/delete")
     public String deleteTask(@PathVariable String uuid,
                             RedirectAttributes redirectAttributes) {
@@ -264,13 +269,13 @@ public class TaskController {
         try {
             TaskEntity task = taskService.getTaskByUuid(uuid, userId);
             model.addAttribute("task", task);
-            
+
             if (!model.containsAttribute("progressDTO")) {
                 ProgressDTO progressDTO = new ProgressDTO();
                 progressDTO.setProgress(task.getProgress());
                 model.addAttribute("progressDTO", progressDTO);
             }
-            
+
             return "task-progress";
         } catch (Exception e) {
             model.addAttribute("errorMessage", e.getMessage());
