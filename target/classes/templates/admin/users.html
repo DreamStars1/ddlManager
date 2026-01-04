@@ -2,95 +2,66 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>用户管理 - DDL管理系统</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <style>
-        .container { max-width: 1200px; margin-top: 20px; }
-        .user-table { margin-top: 20px; }
-        .role-badge { margin-right: 5px; }
-    </style>
+    <title th:text="${pageTitle}">用户管理</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="/">DDL管理系统</a>
-        <div class="navbar-nav ms-auto">
-            <span class="navbar-text me-3">管理员: <th:block th:text="${#authentication.name}">admin</th:block></span>
-            <a class="nav-link" href="/dashboard">返回主页</a>
-            <a class="nav-link" href="/logout">退出</a>
-        </div>
-    </div>
-</nav>
-
 <div class="container">
-    <div class="row">
-        <div class="col-12">
-            <h2>用户管理</h2>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-brand">DDL管理系统 - 管理员</div>
+        <div class="nav-menu">
+            <a th:href="@{/admin/dashboard}">仪表盘</a>
+            <a th:href="@{/admin/users}" class="active">用户管理</a>
+            <a th:href="@{/admin/statistics}">系统统计</a>
+            <a th:href="@{/dashboard}">返回主站</a>
+            <a th:href="@{/logout}">退出</a>
+        </div>
+    </nav>
 
-            <!-- 消息提示 -->
-            <div th:if="${successMessage}" class="alert alert-success" role="alert">
-                <th:block th:text="${successMessage}">操作成功</th:block>
-            </div>
-            <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
-                <th:block th:text="${errorMessage}">操作失败</th:block>
-            </div>
+    <!-- 内容区域 -->
+    <div class="content">
+        <h1 th:text="${pageTitle}">用户管理</h1>
 
-            <!-- 用户列表 -->
-            <div class="card user-table">
-                <div class="card-header">
-                    <h5 class="mb-0">用户列表</h5>
-                </div>
-                <div class="card-body">
-                    <p th:text="${message}">用户管理功能开发中...</p>
-
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th>用户ID</th>
-                                <th>用户名</th>
-                                <th>邮箱</th>
-                                <th>角色</th>
-                                <th>状态</th>
-                                <th>操作</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <!-- 这里可以动态生成用户列表 -->
-                            <tr>
-                                <td>1</td>
-                                <td>admin</td>
-                                <td>admin@test.com</td>
-                                <td>
-                                    <span class="badge bg-primary role-badge">ADMIN</span>
-                                    <span class="badge bg-secondary role-badge">USER</span>
-                                </td>
-                                <td><span class="badge bg-success">启用</span></td>
-                                <td>
-                                    <button class="btn btn-sm btn-warning">禁用</button>
-                                    <button class="btn btn-sm btn-danger">删除</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>user</td>
-                                <td>user@test.com</td>
-                                <td><span class="badge bg-secondary role-badge">USER</span></td>
-                                <td><span class="badge bg-success">启用</span></td>
-                                <td>
-                                    <button class="btn btn-sm btn-warning">禁用</button>
-                                    <button class="btn btn-sm btn-danger">删除</button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+        <!-- 用户列表 -->
+        <div class="user-list">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>用户名</th>
+                    <th>邮箱</th>
+                    <th>角色</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- 临时示例数据 -->
+                <tr>
+                    <td>1</td>
+                    <td>admin</td>
+                    <td>admin@test.com</td>
+                    <td>管理员</td>
+                    <td><span class="status-active">启用</span></td>
+                    <td>
+                        <button class="btn btn-warning btn-sm">禁用</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>user</td>
+                    <td>user@test.com</td>
+                    <td>普通用户</td>
+                    <td><span class="status-active">启用</span></td>
+                    <td>
+                        <button class="btn btn-warning btn-sm">禁用</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-
-<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>
