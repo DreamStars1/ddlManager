@@ -90,5 +90,34 @@ public interface TaskService {
      * @return 更新后的任务实体
      */
     TaskEntity updateStatus(String uuid, TaskStatus status, Long userId);
+
+    /**
+     * 获取待办任务数量
+     * @param userId 用户ID
+     * @return 待办任务数量
+     */
+    int getPendingTaskCount(Long userId);
+
+    /**
+     * 获取进行中任务数量
+     * @param userId 用户ID
+     * @return 进行中任务数量
+     */
+    int getInProgressCount(Long userId);
+
+    /**
+     * 获取即将截止的任务数量
+     * @param userId 用户ID
+     * @param days 未来N天
+     * @return 即将截止的任务数量
+     */
+    int getDueSoonCount(Long userId, int days);
+
+    /**
+     * 获取本月完成的任务数量
+     * @param userId 用户ID
+     * @return 本月完成的任务数量
+     */
+    int getCompletedThisMonthCount(Long userId);
 }
 
