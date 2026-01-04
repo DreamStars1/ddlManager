@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 /**
  * Spring Security用户详情
- * @author developer
+ * @author zhenghaipei
  * @since 2025-12-13
  */
 public class SecurityUser implements UserDetails {

@@ -12,7 +12,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 
 /**
  * Spring Security配置类
- * @author developer
+ * @author zhenghaipei
  * @since 2025-12-13
  */
 @Configuration

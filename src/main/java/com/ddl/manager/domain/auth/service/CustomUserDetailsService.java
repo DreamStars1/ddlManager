@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * 自定义用户详情服务
- * @author developer
+ * @author zhenghaipei
  * @since 2025-12-13
  */
 @Service

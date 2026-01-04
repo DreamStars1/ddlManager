@@ -18,7 +18,7 @@ import java.util.Map;
 
 /**
  * Kafka消费者配置类
- * @author developer
+ * @author 郑海培
  * @since 2025-12-13
  */
 @Configuration

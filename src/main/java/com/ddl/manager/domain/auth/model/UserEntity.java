@@ -20,7 +20,7 @@ import java.util.Set;
 
 /**
  * 用户实体
- * @author developer
+ * @author zhenghaipei
  * @since 2025-12-13
  */
 @Entity

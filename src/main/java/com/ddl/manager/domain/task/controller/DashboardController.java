@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * 主页仪表盘控制器
- * @author developer
+ * @author zhenghaipei
  * @since 2025-12-14
  */
 @Controller

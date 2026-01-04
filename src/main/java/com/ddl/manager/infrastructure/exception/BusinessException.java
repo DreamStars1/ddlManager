@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * 业务异常
  * 用于处理可预期的业务逻辑错误
- * @author developer
+ * @author zhenghaipei
  * @since 2025-12-13
  */
 @Getter

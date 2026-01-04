@@ -18,7 +18,7 @@ import java.util.Set;
 
 /**
  * 角色实体
- * @author dzhenghaipei
+ * @author zhenghaipei
  * @since 2025-12-13
  */
 @Entity
