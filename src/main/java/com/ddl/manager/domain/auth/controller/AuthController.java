@@ -20,7 +20,7 @@ import javax.validation.Valid;
  */
 @Slf4j
 @Controller
-public class AuthController {
+public class  AuthController {
 
     @Autowired
     private UserService userService;
