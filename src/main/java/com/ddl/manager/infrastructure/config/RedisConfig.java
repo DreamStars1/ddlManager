@@ -8,14 +8,18 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 /**
- * Redis配置类
- * 专门处理Session序列化
+ * Redis配置类 - 增强Session存储
  * @author developer
  * @since 2025-12-13
  */
 @Configuration
+@EnableRedisHttpSession(
+        maxInactiveIntervalInSeconds = 1800, // 30分钟过期
+        redisNamespace = "ddl:session" // Redis键命名空间
+)
 public class RedisConfig {
 
     /**
@@ -33,7 +37,7 @@ public class RedisConfig {
         template.setKeySerializer(stringSerializer);
         template.setHashKeySerializer(stringSerializer);
 
-        // 使用JDK序列化器序列化value
+        // 使用JDK序列化器序列化value（支持Spring Security对象序列化）
         JdkSerializationRedisSerializer jdkSerializer = new JdkSerializationRedisSerializer();
         template.setValueSerializer(jdkSerializer);
         template.setHashValueSerializer(jdkSerializer);

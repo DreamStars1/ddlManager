@@ -10,19 +10,32 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.session.data.redis.RedisIndexedSessionRepository;
+import org.springframework.session.security.SpringSessionBackedSessionRegistry;
 
 /**
- * Spring Security配置类
+ * Spring Security配置类 - 增强Redis Session管理
  * @author developer
  * @since 2025-12-13
  */
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true) // 启用方法级权限控制
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
     @Autowired
     private AccessDeniedHandler accessDeniedHandler;
+
+    @Autowired
+    private RedisIndexedSessionRepository sessionRepository;
+
+    /**
+     * Session注册表，用于管理分布式Session
+     */
+    @Bean
+    public SpringSessionBackedSessionRegistry<?> sessionRegistry() {
+        return new SpringSessionBackedSessionRegistry<>(sessionRepository);
+    }
 
     /**
      * 安全过滤链配置
@@ -31,19 +44,23 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
 
-        // 会话管理配置
+        // 会话管理配置 - 增强Redis支持
         http.sessionManagement()
                 .maximumSessions(1) // 同一用户最多1个会话
+                .sessionRegistry(sessionRegistry()) // 使用Redis Session注册表
                 .maxSessionsPreventsLogin(false) // 不阻止新登录，踢掉旧会话
-                .expiredUrl("/login?expired"); // 会话过期跳转
+                .expiredUrl("/login?expired") // 会话过期跳转
+                .and()
+                .sessionFixation().migrateSession() // Session固定保护
+                .invalidSessionUrl("/login?invalid"); // 无效Session跳转
 
         http.exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandler);
 
         http.authorizeRequests()
                 .antMatchers("/register", "/login", "/css/**", "/js/**", "/images/**").permitAll()
-                .antMatchers("/api/test/**").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN") // 管理员权限
+                .antMatchers("/api/test/**", "/api/session/**").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -56,8 +73,9 @@ public class SecurityConfig {
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login?logout=true")
-                .deleteCookies("JSESSIONID") // 清除Cookie
+                .deleteCookies("JSESSIONID", "DDL_SESSION") // 清除Cookie
                 .invalidateHttpSession(true) // 使Session失效
+                .clearAuthentication(true) // 清除认证信息
                 .permitAll();
 
         return http.build();

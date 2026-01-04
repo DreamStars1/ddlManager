@@ -48,9 +48,10 @@ public class TaskController {
 
     @GetMapping
     public String listTasks(Model model,
-                           @RequestParam(required = false) TaskStatus status,
-                           @RequestParam(defaultValue = "0") int page,
-                           @RequestParam(defaultValue = "10") int size) {
+                            @RequestParam(required = false) TaskStatus status,
+                            @RequestParam(defaultValue = "0") int page,
+                            @RequestParam(defaultValue = "10") int size) {
+        // 使用安全的方法获取用户ID
         Long userId = SecurityUtils.getCurrentUserId();
         if (userId == null) {
             return "redirect:/login";

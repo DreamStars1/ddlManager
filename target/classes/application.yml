@@ -39,7 +39,7 @@ spring:
     timeout: 1800
     store-type: redis
     redis:
-      namespace: spring:session:ddl
+      namespace: ddl:session
       flush-mode: on_save
 
 
