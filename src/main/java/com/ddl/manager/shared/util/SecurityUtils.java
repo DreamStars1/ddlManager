@@ -41,6 +41,11 @@ public class SecurityUtils {
         SecurityUser user = getCurrentUser();
         return user != null ? user.getUsername() : null;
     }
+
+    public static String getCurrentUserAvatar() {
+        SecurityUser user = getCurrentUser();
+        return user != null ? user.getUseravatar() : null;
+    }
 }
 
 

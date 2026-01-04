@@ -38,6 +38,8 @@ public class SecurityUser implements UserDetails {
         return user.getUsername();
     }
 
+    public String getUseravatar(){ return user.getAvatar();}
+
     @Override
     public boolean isAccountNonExpired() {
         return true;

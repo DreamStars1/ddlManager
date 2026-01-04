@@ -3,6 +3,7 @@ package com.ddl.manager.domain.task.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import com.ddl.manager.shared.util.SecurityUtils;
 
 /**
  * 主页仪表盘控制器
@@ -20,6 +21,7 @@ public class DashboardController {
     @GetMapping({"/", "/dashboard"})
     public String dashboard(Model model) {
         model.addAttribute("message", "欢迎使用DDL管理系统");
+        model.addAttribute("avatar", SecurityUtils.getCurrentUserAvatar());
         return "dashboard";
     }
 }

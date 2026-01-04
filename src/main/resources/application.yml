@@ -1,15 +1,17 @@
 server:
-  port: 8080 # 使用8080端口
+  port: 8080
 
 spring:
   application:
     name: ddl-manager
 
-  # 激活的配置文件: local (本地服务) 或 docker (Docker 服务)
-  # 可以通过启动参数覆盖: --spring.profiles.active=docker
-  # 或设置环境变量: SPRING_PROFILES_ACTIVE=docker
-  profiles:
-    active: docker # 默认使用 Docker 配置
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/ddl_manager?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
 
   jpa:
     hibernate:
@@ -20,9 +22,19 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
 
-  # 数据源和 Redis 配置已移至 profile 配置文件
-  # application-local.yml: 本地服务配置（端口 3306, 6379）
-  # application-docker.yml: Docker 服务配置（端口 13306, 6380）
+
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+    timeout: 1800000
+    lettuce:
+      pool:
+        max-active: 20
+        max-wait: -1
+        max-idle: 5
+        min-idle: 0
+
 
   thymeleaf:
     prefix: classpath:/templates/
@@ -34,8 +46,8 @@ spring:
   mail:
     host: smtp.qq.com
     port: 587
-    username: no-answer-ddlTest@foxmail.com
-    password: mpembwpbtqhhihdf
+    username: your-email@qq.com
+    password: your-password
     properties:
       mail:
         smtp:
@@ -43,8 +55,24 @@ spring:
           starttls:
             enable: true
 
-# Kafka 配置已移至 profile 配置文件
-# application-local.yml 和 application-docker.yml 中都有 Kafka 配置
+# Kafka配置
+kafka:
+  consumer:
+    servers: localhost:9092
+    enable-auto-commit: true
+    session-timeout: 6000
+    auto-commit-interval: 100
+    auto-offset-reset: latest
+    group-id: ddl-reminder-group
+    concurrency: 10
+  producer:
+    servers: localhost:9092
+    retries: 0
+    batch-size: 4096
+    linger: 1
+    buffer-memory: 40960
+
+
 
 # DDL系统自定义配置
 ddl:
@@ -62,3 +90,67 @@ logging:
     org.springframework.security: DEBUG
   file:
     name: logs/ddl-manager.log
+#server:
+#  port: 8080 # 使用8080端口
+#
+#spring:
+#  application:
+#    name: ddl-manager
+#
+#  # 激活的配置文件: local (本地服务) 或 docker (Docker 服务)
+#  # 可以通过启动参数覆盖: --spring.profiles.active=docker
+#  # 或设置环境变量: SPRING_PROFILES_ACTIVE=docker
+#  profiles:
+#    active: docker # 默认使用 Docker 配置
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL8Dialect
+#        format_sql: true
+#
+#  # 数据源和 Redis 配置已移至 profile 配置文件
+#  # application-local.yml: 本地服务配置（端口 3306, 6379）
+#  # application-docker.yml: Docker 服务配置（端口 13306, 6380）
+#
+#  thymeleaf:
+#    prefix: classpath:/templates/
+#    suffix: .html
+#    cache: false
+#    encoding: UTF-8
+#
+#  # 邮件配置
+#  mail:
+#    host: smtp.qq.com
+#    port: 587
+#    username: no-answer-ddlTest@foxmail.com
+#    password: mpembwpbtqhhihdf
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+#
+## Kafka 配置已移至 profile 配置文件
+## application-local.yml 和 application-docker.yml 中都有 Kafka 配置
+#
+## DDL系统自定义配置
+#ddl:
+#  reminder:
+#    default-hours: 24
+#    topic: ddl-reminder
+#  dashboard:
+#    upcoming-days: 7
+#
+## 日志配置
+#logging:
+#  level:
+#    root: INFO
+#    com.ddl.manager: DEBUG
+#    org.springframework.security: DEBUG
+#  file:
+#    name: logs/ddl-manager.log

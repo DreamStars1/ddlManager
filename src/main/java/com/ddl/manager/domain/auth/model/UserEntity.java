@@ -64,6 +64,9 @@ public class UserEntity extends BaseEntity {
     @Builder.Default
     private Boolean emailNotificationEnabled = true;
 
+    @Column(nullable = false)
+    private String avatar;
+
     /** 用户角色 */
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
