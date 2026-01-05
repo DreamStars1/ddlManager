@@ -1,8 +1,76 @@
-# 忽略logs目录（及其下所有文件）
-logs/
-# 忽略target目录（及其下所有文件）
+# ==========================================
+# 1. Maven / Java 构建产物 (必须忽略)
+# ==========================================
 target/
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
 
+# Maven Wrapper (保留，不要忽略)
+!mvnw
+!mvnw.cmd
+!.mvn/wrapper/maven-wrapper.jar
+
+# ==========================================
+# 2. IDE 配置文件 (导致你之前冲突的根源)
+# ==========================================
+# IntelliJ IDEA
 .idea/
+*.iml
+*.iws
+*.ipr
+out/
 
-src/main/resources/static/images/image
+# VS Code
+.vscode/
+*.code-workspace
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# ==========================================
+# 3. 日志文件 (防止日志刷屏)
+# ==========================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ==========================================
+# 4. 操作系统生成的垃圾文件
+# ==========================================
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ==========================================
+# 5. 前端构建 (如果项目里包含前端代码)
+# ==========================================
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# ==========================================
+# 6. Docker & 本地环境敏感配置
+# ==========================================
+# 如果 application-local.yml 包含只有你本地能用的密码，建议忽略
+# src/main/resources/application-local.yml
+
+# Docker 覆盖文件通常用于本地调试
+docker-compose.override.yml
+
+# ==========================================
+# 7. 其他临时文件
+# ==========================================
+*.bak
+*.tmp
+*.swp
