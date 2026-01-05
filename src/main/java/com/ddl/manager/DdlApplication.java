@@ -6,11 +6,13 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * DDL管理系统启动类
- * @author zhenghaipei
+ * @author developer
  * @since 2025-12-13
  */
+@SpringBootApplication(exclude = {
+        org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration.class
+})
 @EnableScheduling
-@SpringBootApplication
 public class DdlApplication {
 
     public static void main(String[] args) {

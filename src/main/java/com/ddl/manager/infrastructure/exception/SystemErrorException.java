@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * 系统异常
  * 用于处理不可预期的系统级错误
- * @author zhenghaipei
+ * @author developer
  * @since 2025-12-13
  */
 @Getter

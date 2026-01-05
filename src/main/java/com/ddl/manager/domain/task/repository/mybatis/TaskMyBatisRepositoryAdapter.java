@@ -13,7 +13,7 @@ import java.util.Optional;
 
 /**
  * 任务仓储MyBatis适配器（预留实现）
- * <p>
+ * 
  * 切换到MyBatis时的步骤：
  * 1. 在pom.xml中添加mybatis-spring-boot-starter依赖
  * 2. 创建TaskMapper接口和对应的XML映射文件
@@ -21,7 +21,7 @@ import java.util.Optional;
  * 4. 将此类添加@Component和@Primary注解
  * 5. 移除TaskJpaRepositoryAdapter的@Primary注解
  * 
- * @author zhenghaipei
+ * @author developer
  * @since 2025-12-13
  */
 // @Component  // 启用MyBatis时取消注释
@@ -80,7 +80,7 @@ public class TaskMyBatisRepositoryAdapter implements TaskRepositoryPort {
     }
 
     @Override
-    public List<TaskEntity> findTasksNeedingReminder(LocalDateTime reminderTime, LocalDateTime now, List<TaskStatus> statuses) {
+    public List<TaskEntity> findTasksNeedingReminder(LocalDateTime reminderTime, List<TaskStatus> statuses) {
         // TODO: 实现MyBatis查询
         return Collections.emptyList();
     }

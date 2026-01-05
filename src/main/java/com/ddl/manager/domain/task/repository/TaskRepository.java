@@ -15,7 +15,7 @@ import java.util.Optional;
 
 /**
  * 任务数据访问接口
- * @author zhenghaipei
+ * @author developer
  * @since 2025-12-13
  */
 @Repository
@@ -64,16 +64,13 @@ public interface TaskRepository extends JpaRepository<TaskEntity, Long> {
 
     /**
      * 查找需要发送提醒的任务
-     * @param reminderTime 提醒时间阈值（当前时间 + 提醒小时数）
+     * @param reminderTime 提醒时间阈值
      * @param statuses 任务状态列表
      * @return 任务列表
      */
     @Query("SELECT t FROM TaskEntity t WHERE t.reminderSent = false " +
             "AND t.deadline <= :reminderTime " +
-            "AND t.deadline > :now " +
-            "AND t.status IN :statuses " +
-            "ORDER BY t.deadline ASC")
+            "AND t.status IN :statuses")
     List<TaskEntity> findTasksNeedingReminder(@Param("reminderTime") LocalDateTime reminderTime,
-                                              @Param("now") LocalDateTime now,
                                               @Param("statuses") List<TaskStatus> statuses);
 }

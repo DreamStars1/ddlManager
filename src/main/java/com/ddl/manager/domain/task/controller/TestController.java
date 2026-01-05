@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 测试控制器
- * @author zhenghaipei
+ * @author developer
  * @since 2025-12-14
  */
 @RestController

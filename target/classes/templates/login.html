@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>登录 - DDL管理系统</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .login-container {
+        background: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 400px;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+        color: #666;
+      }
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+      input:focus {
+        outline: none;
+        border-color: #667eea;
+      }
+      button {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      button:hover {
+        opacity: 0.9;
+      }
+      .error {
+        color: #e74c3c;
+        text-align: center;
+        margin-bottom: 15px;
+      }
+      .register-link {
+        text-align: center;
+        margin-top: 20px;
+      }
+      .register-link a {
+        color: #667eea;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <h1>DDL管理系统</h1>
+      <div th:if="${param.error}" class="error">用户名或密码错误</div>
+      <div th:if="${param.logout}" class="error" style="color: #27ae60">
+        已成功登出
+      </div>
+      <div
+        th:if="${successMessage}"
+        class="error"
+        style="color: #27ae60"
+        th:text="${successMessage}"
+      ></div>
+      <form th:action="@{/login}" method="post">
+        <div class="form-group">
+          <label for="username">用户名</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            required
+            placeholder="请输入用户名"
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">密码</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            placeholder="请输入密码"
+          />
+        </div>
+        <button type="submit">登录</button>
+      </form>
+      <div class="register-link">
+        还没有账号？<a th:href="@{/register}">立即注册</a>
+      </div>
+    </div>
+  </body>
+</html>

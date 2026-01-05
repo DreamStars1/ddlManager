@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 全局异常处理器
- * @author zhenghaipei
+ * @author developer
  * @since 2025-12-13
  */
 @Slf4j

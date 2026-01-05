@@ -5,7 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * 应用启动测试
- * @author zhenghaipei
+ * @author developer
  * @since 2025-12-13
  */
 @SpringBootTest

@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 
 /**
  * DDL任务实体
- * @author zhenghaipei
+ * @author developer
  * @since 2025-12-13
  */
 @Entity

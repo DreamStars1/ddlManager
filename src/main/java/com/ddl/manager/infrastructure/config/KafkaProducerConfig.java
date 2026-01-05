@@ -15,7 +15,7 @@ import java.util.Map;
 
 /**
  * Kafka生产者配置类
- * @author zhenghaipei
+ * @author developer
  * @since 2025-12-13
  */
 @Configuration

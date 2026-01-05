@@ -73,8 +73,8 @@ public class TaskManager implements TaskRepositoryPort {
     }
 
     @Override
-    public List<TaskEntity> findTasksNeedingReminder(LocalDateTime reminderTime, LocalDateTime now, List<TaskStatus> statuses) {
-        return taskRepository.findTasksNeedingReminder(reminderTime, now, statuses);
+    public List<TaskEntity> findTasksNeedingReminder(LocalDateTime reminderTime, List<TaskStatus> statuses) {
+        return taskRepository.findTasksNeedingReminder(reminderTime, statuses);
     }
 
     @Override
