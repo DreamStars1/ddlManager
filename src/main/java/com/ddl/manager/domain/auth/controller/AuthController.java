@@ -15,7 +15,7 @@ import javax.validation.Valid;
 
 /**
  * 认证控制器
- * @author  zhenghaipei
+ * @author zhenghaipei
  * @since 2025-12-14
  */
 @Slf4j

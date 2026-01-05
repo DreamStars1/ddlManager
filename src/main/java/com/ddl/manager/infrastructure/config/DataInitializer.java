@@ -16,7 +16,7 @@ import java.util.Set;
 /**
  * 数据初始化器
  * 系统启动时自动创建测试用户和角色
- * @author developer
+ * @author zhenghaipei
  * @since 2025-12-14
  */
 @Slf4j

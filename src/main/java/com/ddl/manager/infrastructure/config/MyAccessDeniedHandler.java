@@ -12,7 +12,7 @@ import java.io.IOException;
 
 /**
  * 权限拒绝处理器
- * @author developer
+ * @author 郑海培
  * @since 2025-12-13
  */
 @Slf4j

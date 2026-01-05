@@ -6,14 +6,19 @@ import com.ddl.manager.domain.auth.model.UserEntity;
 import com.ddl.manager.domain.auth.repository.RoleRepository;
 import com.ddl.manager.domain.auth.repository.UserRepository;
 import com.ddl.manager.infrastructure.exception.BusinessException;
+import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * 用户服务实现类
@@ -68,6 +73,7 @@ public class UserServiceImpl implements UserService {
                 .username(registerDTO.getUsername())
                 .password(passwordEncoder.encode(registerDTO.getPassword()))
                 .email(registerDTO.getEmail())
+                .avatar(uploadAvatarFile(registerDTO.getAvatar(), registerDTO.getUsername()))
                 .enabled(true)
                 .reminderHours(24)  // 默认24小时前提醒
                 .emailNotificationEnabled(true)  // 默认开启邮件提醒
@@ -102,5 +108,50 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new BusinessException("用户不存在: " + email));
     }
+
+    /**
+     * 处理头像文件上传
+     */
+    public String uploadAvatarFile(MultipartFile avatar, String name) {
+        // 1. 校验文件是否为空
+        if (avatar == null || avatar.isEmpty()) {
+            return null; // 或返回默认头像路径
+        }
+
+        // 2. 定义头像保存目录
+        String projectRootPath = System.getProperty("user.dir"); // 项目根目录（对应你截图中的C:\Users\alphabeta\Desktop\ddlManager）
+        String basePath = projectRootPath + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "static" + File.separator + "images" + File.separator + "image" + File.separator;
+
+        // 3. 生成唯一文件名（避免重名）
+        String originalFilename = avatar.getOriginalFilename();
+        String suffix = null;
+        if (originalFilename != null) {
+            suffix = originalFilename.substring(originalFilename.lastIndexOf("."));
+        }
+        String fileName = name + suffix;
+
+        // 4. 创建File对象，检查并创建父目录
+        File targetFile = new File(basePath + fileName);
+        File parentDir = targetFile.getParentFile(); // 获取父目录对象
+
+        // 关键：如果父目录不存在，递归创建所有多级目录
+        if (!parentDir.exists()) {
+            parentDir.mkdirs(); // mkdirs()：创建多级目录；mkdir()：仅创建单级目录，此处必须用mkdirs()
+        }
+
+        // 5. 保存文件（此时父目录已存在，不会报错）
+        try {
+            avatar.transferTo(targetFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // 6. 返回文件访问路径（根据你的业务需求调整）
+        return "/images/image/" + fileName;
+    }
 }
+
+
+
+
 

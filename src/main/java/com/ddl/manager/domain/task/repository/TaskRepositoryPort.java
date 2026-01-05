@@ -12,7 +12,7 @@ import java.util.Optional;
 /**
  * 任务仓储端口接口（业务层使用）
  * Service层只依赖此接口，不关心底层是JPA还是MyBatis
- * @author developer
+ * @author zhenghaipei
  * @since 2025-12-13
  */
 public interface TaskRepositoryPort {
@@ -81,11 +81,12 @@ public interface TaskRepositoryPort {
 
     /**
      * 查找需要发送提醒的任务
-     * @param reminderTime 提醒时间阈值
+     * @param reminderTime 提醒时间阈值（当前时间 + 提醒小时数）
+     * @param now 当前时间
      * @param statuses 任务状态列表
      * @return 任务列表
      */
-    List<TaskEntity> findTasksNeedingReminder(LocalDateTime reminderTime, List<TaskStatus> statuses);
+    List<TaskEntity> findTasksNeedingReminder(LocalDateTime reminderTime, LocalDateTime now, List<TaskStatus> statuses);
 
     /**
      * 判断任务是否存在

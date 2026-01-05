@@ -1,0 +1,8 @@
+# 忽略logs目录（及其下所有文件）
+logs/
+# 忽略target目录（及其下所有文件）
+target/
+
+.idea/
+
+src/main/resources/static/images/image

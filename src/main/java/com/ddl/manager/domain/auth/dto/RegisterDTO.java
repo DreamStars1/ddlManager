@@ -1,9 +1,11 @@
 package com.ddl.manager.domain.auth.dto;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
 /**
@@ -32,5 +34,7 @@ public class RegisterDTO {
     /** 确认密码 */
     @NotBlank(message = "确认密码不能为空")
     private String confirmPassword;
+
+    private MultipartFile avatar;
 }
 
