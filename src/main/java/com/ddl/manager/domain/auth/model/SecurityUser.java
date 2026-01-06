@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
  */
 public class SecurityUser implements UserDetails {
 
+    private static final long serialVersionUID = 1L;
+
     /** 用户实体 */
     private final UserEntity user;
 
@@ -82,5 +84,13 @@ public class SecurityUser implements UserDetails {
      */
     public String getEmail() {
         return user.getEmail();
+    }
+
+    /**
+     * 获取用户实体
+     * @return 用户实体
+     */
+    public UserEntity getUser() {
+        return user;
     }
 }

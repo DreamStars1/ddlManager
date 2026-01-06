@@ -36,6 +36,8 @@ import java.util.Set;
 @Builder
 public class UserEntity extends BaseEntity {
 
+    private static final long serialVersionUID = 1L;
+
     /** 用户名 */
     @Column(unique = true, nullable = false, length = 50)
     private String username;
@@ -76,4 +78,12 @@ public class UserEntity extends BaseEntity {
     )
     @Builder.Default
     private Set<RoleEntity> roles = new HashSet<>();
+
+    /**
+     * 转换为SecurityUser
+     */
+    public SecurityUser toSecurityUser() {
+        return new SecurityUser(this);
+    }
+
 }

@@ -30,6 +30,8 @@ import java.util.Set;
 @Builder
 public class RoleEntity {
 
+    private static final long serialVersionUID = 1L;
+
     /** 角色ID */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -2,37 +2,56 @@ package com.ddl.manager.infrastructure.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 /**
- * Redis配置类
- * @author zhenghaipei
+ * Redis配置类 - 增强Session存储
+ * @author developer
  * @since 2025-12-13
  */
 @Configuration
+@EnableRedisHttpSession(
+        maxInactiveIntervalInSeconds = 1800, // 30分钟过期
+        redisNamespace = "ddl:session" // Redis键命名空间
+)
 public class RedisConfig {
 
     /**
-     * 配置RedisTemplate
-     * @param connectionFactory Redis连接工厂
-     * @return RedisTemplate实例
+     * 配置Session专用的RedisTemplate
+     * 使用JDK序列化解决Spring Security对象序列化问题
      */
     @Bean
+    @Primary
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
-        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(connectionFactory);
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
+        template.setConnectionFactory(connectionFactory);
 
-        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
-        redisTemplate.setKeySerializer(stringRedisSerializer);
-        redisTemplate.setHashKeySerializer(stringRedisSerializer);
+        // 使用StringRedisSerializer序列化key
+        StringRedisSerializer stringSerializer = new StringRedisSerializer();
+        template.setKeySerializer(stringSerializer);
+        template.setHashKeySerializer(stringSerializer);
 
-        GenericJackson2JsonRedisSerializer jsonRedisSerializer = new GenericJackson2JsonRedisSerializer();
-        redisTemplate.setHashValueSerializer(jsonRedisSerializer);
-        redisTemplate.setValueSerializer(jsonRedisSerializer);
+        // 使用JDK序列化器序列化value（支持Spring Security对象序列化）
+        JdkSerializationRedisSerializer jdkSerializer = new JdkSerializationRedisSerializer();
+        template.setValueSerializer(jdkSerializer);
+        template.setHashValueSerializer(jdkSerializer);
 
-        return redisTemplate;
+        template.afterPropertiesSet();
+        return template;
+    }
+
+    /**
+     * 配置Session序列化器
+     * 必须使用JDK序列化处理Spring Security对象
+     */
+    @Bean
+    public RedisSerializer<Object> springSessionDefaultRedisSerializer() {
+        return new JdkSerializationRedisSerializer();
     }
 }
