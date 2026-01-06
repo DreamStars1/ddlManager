@@ -3,22 +3,24 @@
 ## 修改了下述文件支持redis
 
 pom.xml
+src/main/java/com/ddl/manager/domain/auth/controller
 src/main/java/com/ddl/manager/domain/auth/model/RoleEntity.java
 src/main/java/com/ddl/manager/domain/auth/model/SecurityUser.java
 src/main/java/com/ddl/manager/domain/auth/model/UserEntity.java
 src/main/java/com/ddl/manager/domain/auth/service/CustomUserDetailsService.java
+src/main/java/com/ddl/manager/infrastructure
 src/main/java/com/ddl/manager/infrastructure/config/RedisConfig.java
 src/main/java/com/ddl/manager/infrastructure/config/SecurityConfig.java
 src/main/java/com/ddl/manager/shared/util/SecurityUtils.java
 
 ## 添加管理员界面
 src/main/resources/templates/admin
+src/main/resources/static/css/style.css
 
 ## 修复首页数据显示问题
 src/main/java/com/ddl/manager/domain/task/controller/DashboardController.java
 src/main/java/com/ddl/manager/domain/task/service/TaskService.java
 src/main/java/com/ddl/manager/domain/task/service/TaskServiceImpl.java
-src/main/resources/static/css/style.css
 
 ## 修复创建任务时间选择
 src/main/resources/templates/task-form.html
