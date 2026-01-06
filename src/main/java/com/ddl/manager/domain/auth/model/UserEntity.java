@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,7 +35,9 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserEntity extends BaseEntity {
+public class UserEntity extends BaseEntity implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /** 用户名 */
     @Column(unique = true, nullable = false, length = 50)
@@ -76,4 +79,12 @@ public class UserEntity extends BaseEntity {
     )
     @Builder.Default
     private Set<RoleEntity> roles = new HashSet<>();
+
+    /**
+     * 转换为SecurityUser
+     */
+    public SecurityUser toSecurityUser() {
+        return new SecurityUser(this);
+    }
+
 }

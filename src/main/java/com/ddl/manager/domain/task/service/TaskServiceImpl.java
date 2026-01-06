@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -242,9 +243,85 @@ public class TaskServiceImpl implements TaskService {
 
         return updatedTask;
     }
+
+    /**
+     * 获取待办任务数量
+     */
+    @Override
+    public int getPendingTaskCount(Long userId) {
+        try {
+            // 获取TODO状态的任务数量
+            Page<TaskEntity> todoTasks = taskRepositoryPort.findByUserIdAndStatus(
+                    userId, TaskStatus.TODO, Pageable.unpaged());
+            return (int) todoTasks.getTotalElements();
+        } catch (Exception e) {
+            log.error("获取待办任务数量失败: userId={}", userId, e);
+            return 0;
+        }
+    }
+
+    /**
+     * 获取进行中任务数量
+     */
+    @Override
+    public int getInProgressCount(Long userId) {
+        try {
+            // 获取IN_PROGRESS状态的任务数量
+            Page<TaskEntity> inProgressTasks = taskRepositoryPort.findByUserIdAndStatus(
+                    userId, TaskStatus.IN_PROGRESS, Pageable.unpaged());
+            return (int) inProgressTasks.getTotalElements();
+        } catch (Exception e) {
+            log.error("获取进行中任务数量失败: userId={}", userId, e);
+            return 0;
+        }
+    }
+
+    /**
+     * 获取即将截止的任务数量
+     */
+    @Override
+    public int getDueSoonCount(Long userId, int days) {
+        try {
+            LocalDateTime now = LocalDateTime.now();
+            LocalDateTime deadline = now.plusDays(days);
+            List<TaskStatus> activeStatuses = Arrays.asList(TaskStatus.TODO, TaskStatus.IN_PROGRESS);
+
+            // 获取即将截止的任务
+            List<TaskEntity> dueSoonTasks = taskRepositoryPort.findUpcomingTasks(
+                    userId, now, deadline, activeStatuses);
+            return dueSoonTasks.size();
+        } catch (Exception e) {
+            log.error("获取即将截止任务数量失败: userId={}, days={}", userId, days, e);
+            return 0;
+        }
+    }
+
+    /**
+     * 获取本月完成的任务数量
+     */
+    @Override
+    public int getCompletedThisMonthCount(Long userId) {
+        try {
+            // 获取本月第一天
+            LocalDate firstDayOfMonth = LocalDate.now().withDayOfMonth(1);
+            LocalDateTime startOfMonth = firstDayOfMonth.atStartOfDay();
+
+            // 获取本月完成的任务
+            Page<TaskEntity> completedTasks = taskRepositoryPort.findByUserIdAndStatus(
+                    userId, TaskStatus.COMPLETED, Pageable.unpaged());
+
+            // 过滤本月完成的任务
+            long count = completedTasks.getContent().stream()
+                    .filter(task -> task.getCompletedTime() != null &&
+                            task.getCompletedTime().isAfter(startOfMonth))
+                    .count();
+
+            return (int) count;
+        } catch (Exception e) {
+            log.error("获取本月完成任务数量失败: userId={}", userId, e);
+            return 0;
+        }
+    }
+
+
 }
-
-
-
-
-

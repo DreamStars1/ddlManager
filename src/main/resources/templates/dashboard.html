@@ -156,22 +156,22 @@
       <div class="cards">
         <div class="card">
           <h3>待办任务</h3>
-          <div class="number">0</div>
+          <div class="number" th:text="${pendingCount}">0</div>
           <p>需要处理的任务</p>
         </div>
         <div class="card">
           <h3>进行中</h3>
-          <div class="number">0</div>
+          <div class="number" th:text="${inProgressCount}">0</div>
           <p>正在进行的任务</p>
         </div>
         <div class="card">
           <h3>即将截止</h3>
-          <div class="number">0</div>
+          <div class="number" th:text="${dueSoonCount}">0</div>
           <p>3天内截止的任务</p>
         </div>
         <div class="card">
           <h3>已完成</h3>
-          <div class="number">0</div>
+          <div class="number" th:text="${completedThisMonthCount}">0</div>
           <p>本月完成的任务</p>
         </div>
       </div>

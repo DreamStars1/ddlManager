@@ -1,262 +1,677 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>新建任务 - DDL管理系统</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        font-family: Arial, sans-serif;
-        background: #f5f6fa;
-      }
-      .navbar {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 15px 30px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .navbar h1 {
-        color: white;
-        font-size: 20px;
-      }
-      .navbar-right a {
-        color: white;
-        text-decoration: none;
-        margin-left: 20px;
-      }
-      .container {
-        max-width: 800px;
-        margin: 30px auto;
-        padding: 0 20px;
-      }
-      .form-card {
-        background: white;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      }
-      .form-card h2 {
-        color: #333;
-        margin-bottom: 25px;
-      }
-      .form-group {
-        margin-bottom: 20px;
-      }
-      label {
-        display: block;
-        margin-bottom: 8px;
-        color: #333;
-        font-weight: 500;
-      }
-      input,
-      select,
-      textarea {
-        width: 100%;
-        padding: 12px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 14px;
-      }
-      input:focus,
-      select:focus,
-      textarea:focus {
-        outline: none;
-        border-color: #667eea;
-      }
-      textarea {
-        resize: vertical;
-        min-height: 100px;
-      }
-      .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-      }
-      .btn {
-        padding: 12px 24px;
-        border: none;
-        border-radius: 5px;
-        font-size: 14px;
-        cursor: pointer;
-      }
-      .btn-primary {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-      }
-      .btn-secondary {
-        background: #ddd;
-        color: #333;
-      }
-      .btn-group {
-        display: flex;
-        gap: 10px;
-        margin-top: 20px;
-      }
-    </style>
-  </head>
-  <body>
-    <nav class="navbar">
-      <h1>DDL管理系统</h1>
-      <div class="navbar-right">
-        <a th:href="@{/logout}">退出</a>
-      </div>
-    </nav>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DDL管理系统 - 新建任务</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+    }
+    .navbar {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar h1 {
+      color: white;
+      font-size: 20px;
+    }
+    .navbar-right a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    .form-card {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-card h2 {
+      color: #333;
+      margin-bottom: 25px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+      font-weight: 500;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    .btn-secondary {
+      background: #ddd;
+      color: #333;
+    }
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
 
-    <div class="container">
-      <div class="form-card">
-        <!-- 导航栏 -->
-        <div
-          style="
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
-          "
-        >
-          <a
-            th:href="@{/dashboard}"
-            style="color: #667eea; text-decoration: none; font-weight: 500"
-            >← 主页</a
-          >
-          <span style="color: #ddd">|</span>
-          <a
-            th:href="@{/tasks}"
-            style="color: #667eea; text-decoration: none; font-weight: 500"
-            >任务列表</a
-          >
-          <span style="color: #ddd">|</span>
-          <span
-            style="color: #333"
-            th:text="${taskDTO.uuid != null ? '编辑任务' : '新建任务'}"
-            >新建任务</span
-          >
-        </div>
+    /* 自定义日期时间选择器样式 */
+    .datetime-input-container {
+      position: relative;
+    }
+    .datetime-display {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background: white;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .datetime-display:hover {
+      border-color: #667eea;
+    }
+    .datetime-display:focus-within {
+      border-color: #667eea;
+      box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+    }
+    .datetime-display.active {
+      border-color: #667eea;
+      box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+    }
+    .datetime-parts {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+    .datetime-part {
+      display: flex;
+      align-items: center;
+      margin: 0 5px;
+      position: relative;
+    }
+    .datetime-value {
+      padding: 4px 8px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      position: relative;
+    }
+    .datetime-value:hover {
+      background-color: #f0f0f0;
+    }
+    .datetime-value.active {
+      background-color: #e6eeff;
+      color: #667eea;
+    }
+    .datetime-separator {
+      margin: 0 2px;
+      color: #666;
+    }
+    .datetime-arrows {
+      display: none;
+      flex-direction: column;
+      margin-left: 5px;
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 3px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .datetime-part:hover .datetime-arrows {
+      display: flex;
+    }
+    .datetime-arrow {
+      width: 20px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #999;
+      font-size: 10px;
+      transition: all 0.2s;
+    }
+    .datetime-arrow:hover {
+      color: #667eea;
+      background-color: #f5f5f5;
+    }
+    .datetime-arrow.up::after {
+      content: "▲";
+    }
+    .datetime-arrow.down::after {
+      content: "▼";
+    }
+    .datetime-icon {
+      margin-left: 10px;
+      color: #667eea;
+    }
 
-        <h2
-          th:text="${taskDTO.uuid != null ? '编辑任务' : '新建任务'}"
-          style="margin-bottom: 25px"
-        >
-          新建任务
-        </h2>
+    /* 滑动选择器样式 */
+    .slider-picker {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      display: none;
+      padding: 15px;
+      margin-top: 5px;
+    }
+    .slider-picker.active {
+      display: block;
+    }
+    .slider-container {
+      position: relative;
+      height: 150px;
+      overflow: hidden;
+    }
+    .slider-values {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+    }
+    .slider-scroll {
+      transition: transform 0.2s ease-out;
+    }
+    .slider-value {
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border-radius: 3px;
+    }
+    .slider-value:hover {
+      background-color: #f5f5f5;
+    }
+    .slider-value.active {
+      color: #667eea;
+      font-weight: bold;
+      background-color: #e6eeff;
+    }
+    .slider-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 15px;
+    }
+    .slider-btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 12px;
+      margin-left: 10px;
+    }
+    .slider-confirm {
+      background: #667eea;
+      color: white;
+    }
+    .slider-cancel {
+      background: #f0f0f0;
+      color: #666;
+    }
 
-        <!-- 错误提示 -->
-        <div
-          th:if="${errorMessage}"
-          style="
-            background: #f8d7da;
-            color: #721c24;
-            padding: 12px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-          "
-          th:text="${errorMessage}"
-        ></div>
+    /* 隐藏原始输入框 */
+    .hidden-input {
+      display: none;
+    }
 
-        <form
-          th:action="${taskDTO.uuid != null ? '/tasks/' + taskDTO.uuid : '/tasks'}"
-          method="post"
-          th:object="${taskDTO}"
-        >
-          <div class="form-group">
-            <label for="title">任务标题 *</label>
-            <input
-              type="text"
-              id="title"
-              th:field="*{title}"
-              required
-              placeholder="请输入任务标题"
-            />
-            <div
-              th:if="${#fields.hasErrors('title')}"
-              th:errors="*{title}"
-              style="color: #e74c3c; font-size: 12px; margin-top: 5px"
-            ></div>
-          </div>
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <h1>DDL管理系统</h1>
+  <div class="navbar-right">
+    <a href="/logout">退出</a>
+  </div>
+</nav>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="category">分类</label>
-              <select id="category" th:field="*{category}">
-                <option value="">请选择分类</option>
-                <option
-                  th:each="cat : ${categories}"
-                  th:value="${cat}"
-                  th:text="${cat}"
-                ></option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="priority">优先级</label>
-              <select id="priority" th:field="*{priority}">
-                <option
-                  th:each="p : ${priorities}"
-                  th:value="${p}"
-                  th:text="${p.label}"
-                ></option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="status">状态</label>
-            <select id="status" th:field="*{status}">
-              <option
-                th:each="s : ${statuses}"
-                th:value="${s}"
-                th:text="${s.label}"
-              ></option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="deadline">截止时间 *</label>
-            <input
-              type="datetime-local"
-              id="deadline"
-              th:field="*{deadline}"
-              required
-            />
-            <div
-              th:if="${#fields.hasErrors('deadline')}"
-              th:errors="*{deadline}"
-              style="color: #e74c3c; font-size: 12px; margin-top: 5px"
-            ></div>
-          </div>
-
-          <div class="form-group">
-            <label for="description">任务描述</label>
-            <textarea
-              id="description"
-              th:field="*{description}"
-              placeholder="请输入任务描述（可选）"
-            ></textarea>
-          </div>
-
-          <div class="btn-group">
-            <button
-              type="submit"
-              class="btn btn-primary"
-              th:text="${taskDTO.uuid != null ? '更新任务' : '创建任务'}"
-            >
-              创建任务
-            </button>
-            <a
-              th:href="${taskDTO.uuid != null ? '/tasks/' + taskDTO.uuid : '/tasks'}"
-              class="btn btn-secondary"
-              th:text="${taskDTO.uuid != null ? '返回' : '取消'}"
-              >取消</a
-            >
-          </div>
-        </form>
-      </div>
+<div class="container">
+  <div class="form-card">
+    <!-- 导航栏 -->
+    <div style="
+                display: flex;
+                gap: 15px;
+                align-items: center;
+                margin-bottom: 20px;
+                padding-bottom: 15px;
+                border-bottom: 1px solid #eee;
+            ">
+      <a href="/dashboard" style="color: #667eea; text-decoration: none; font-weight: 500">← 主页</a>
+      <span style="color: #ddd">|</span>
+      <a href="/tasks" style="color: #667eea; text-decoration: none; font-weight: 500">任务列表</a>
+      <span style="color: #ddd">|</span>
+      <span style="color: #333">新建任务</span>
     </div>
-  </body>
+
+    <h2 style="margin-bottom: 25px">新建任务</h2>
+
+    <form action="/tasks" method="post">
+      <div class="form-group">
+        <label for="title">任务标题 *</label>
+        <input
+                type="text"
+                id="title"
+                name="title"
+                required
+                placeholder="请输入任务标题"
+        />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="category">分类</label>
+          <select id="category" name="category">
+            <option value="">请选择分类</option>
+            <option value="学习">学习</option>
+            <option value="生活">生活</option>
+            <option value="工作">工作</option>
+            <option value="其他">其他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="priority">优先级</label>
+          <select id="priority" name="priority">
+            <option value="LOW">低</option>
+            <option value="MEDIUM" selected>中</option>
+            <option value="HIGH">高</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="status">状态</label>
+        <select id="status" name="status">
+          <option value="TODO" selected>待办</option>
+          <option value="IN_PROGRESS">进行中</option>
+          <option value="DONE">已完成</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="deadline">截止时间 *</label>
+        <!-- 隐藏的原始输入 -->
+        <input type="datetime-local" id="deadline" name="deadline" class="hidden-input" required />
+
+        <!-- 自定义日期时间选择器 -->
+        <div class="datetime-input-container">
+          <div class="datetime-display" id="datetimeDisplay">
+            <div class="datetime-parts">
+              <div class="datetime-part" data-type="year">
+                <span class="datetime-value" id="yearValue">2026</span>
+                <div class="datetime-arrows">
+                  <div class="datetime-arrow up" data-type="year"></div>
+                  <div class="datetime-arrow down" data-type="year"></div>
+                </div>
+              </div>
+              <span class="datetime-separator">年</span>
+              <div class="datetime-part" data-type="month">
+                <span class="datetime-value" id="monthValue">1</span>
+                <div class="datetime-arrows">
+                  <div class="datetime-arrow up" data-type="month"></div>
+                  <div class="datetime-arrow down" data-type="month"></div>
+                </div>
+              </div>
+              <span class="datetime-separator">月</span>
+              <div class="datetime-part" data-type="day">
+                <span class="datetime-value" id="dayValue">4</span>
+                <div class="datetime-arrows">
+                  <div class="datetime-arrow up" data-type="day"></div>
+                  <div class="datetime-arrow down" data-type="day"></div>
+                </div>
+              </div>
+              <span class="datetime-separator">日</span>
+              <div class="datetime-part" data-type="hour">
+                <span class="datetime-value" id="hourValue">18</span>
+                <div class="datetime-arrows">
+                  <div class="datetime-arrow up" data-type="hour"></div>
+                  <div class="datetime-arrow down" data-type="hour"></div>
+                </div>
+              </div>
+              <span class="datetime-separator">:</span>
+              <div class="datetime-part" data-type="minute">
+                <span class="datetime-value" id="minuteValue">28</span>
+                <div class="datetime-arrows">
+                  <div class="datetime-arrow up" data-type="minute"></div>
+                  <div class="datetime-arrow down" data-type="minute"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 滑动选择器 -->
+          <div class="slider-picker" id="sliderPicker">
+            <div class="slider-container">
+              <div class="slider-values">
+                <div class="slider-scroll" id="sliderScroll"></div>
+              </div>
+            </div>
+            <div class="slider-actions">
+              <button class="slider-btn slider-cancel" id="sliderCancel">取消</button>
+              <button class="slider-btn slider-confirm" id="sliderConfirm">确定</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">任务描述</label>
+        <textarea
+                id="description"
+                name="description"
+                placeholder="请输入任务描述（可选）"
+        ></textarea>
+      </div>
+
+      <div class="btn-group">
+        <button type="submit" class="btn btn-primary">创建任务</button>
+        <a href="/tasks" class="btn btn-secondary">取消</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // 日期时间选择器逻辑
+  document.addEventListener('DOMContentLoaded', function() {
+    const datetimeDisplay = document.getElementById('datetimeDisplay');
+    const sliderPicker = document.getElementById('sliderPicker');
+    const sliderScroll = document.getElementById('sliderScroll');
+    const sliderCancel = document.getElementById('sliderCancel');
+    const sliderConfirm = document.getElementById('sliderConfirm');
+    const hiddenInput = document.getElementById('deadline');
+
+    // 当前选中的日期时间部分
+    let currentPart = null;
+    let currentValues = [];
+    let currentIndex = 0;
+
+    // 当前日期时间
+    let currentDateTime = {
+      year: 2026,
+      month: 1,
+      day: 30,
+      hour: 0,
+      minute: 0
+    };
+
+    // 初始化日期时间显示
+    updateDateTimeDisplay();
+    updateHiddenInput();
+
+    // 为每个日期时间部分绑定点击事件
+    document.querySelectorAll('.datetime-value').forEach(value => {
+      value.addEventListener('click', function() {
+        const part = this.closest('.datetime-part').dataset.type;
+        openSliderPicker(part);
+      });
+    });
+
+    // 为上下箭头绑定事件
+    document.querySelectorAll('.datetime-arrow').forEach(arrow => {
+      arrow.addEventListener('click', function(e) {
+        e.stopPropagation(); // 防止事件冒泡
+        const part = this.dataset.type;
+        const isUp = this.classList.contains('up');
+        // 修正箭头方向：向下箭头增加数值，向上箭头减少数值
+        adjustDateTime(part, !isUp);
+      });
+    });
+
+    // 关闭滑动选择器
+    sliderCancel.addEventListener('click', closeSliderPicker);
+
+    // 确认选择
+    sliderConfirm.addEventListener('click', function() {
+      if (currentPart) {
+        currentDateTime[currentPart] = currentValues[currentIndex];
+        updateDateTimeDisplay();
+        updateHiddenInput();
+        closeSliderPicker();
+      }
+    });
+
+    // 点击外部关闭选择器
+    document.addEventListener('click', function(e) {
+      if (!datetimeDisplay.contains(e.target) && !sliderPicker.contains(e.target)) {
+        closeSliderPicker();
+      }
+    });
+
+    // ESC键关闭选择器
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeSliderPicker();
+      }
+    });
+
+    // 打开滑动选择器
+    function openSliderPicker(part) {
+      // 移除之前的高亮
+      document.querySelectorAll('.datetime-value').forEach(v => {
+        v.classList.remove('active');
+      });
+
+      // 高亮当前部分
+      document.getElementById(`${part}Value`).classList.add('active');
+      datetimeDisplay.classList.add('active');
+
+      // 设置当前部分
+      currentPart = part;
+
+      // 生成可选项
+      generateSliderValues(part);
+
+      // 显示滑动选择器
+      sliderPicker.classList.add('active');
+
+      // 定位到当前值
+      const currentValue = currentDateTime[part];
+      currentIndex = currentValues.indexOf(currentValue);
+      updateSliderPosition();
+    }
+
+    // 关闭滑动选择器
+    function closeSliderPicker() {
+      sliderPicker.classList.remove('active');
+      datetimeDisplay.classList.remove('active');
+      document.querySelectorAll('.datetime-value').forEach(v => {
+        v.classList.remove('active');
+      });
+      currentPart = null;
+    }
+
+    // 生成滑动选择器的值
+    function generateSliderValues(part) {
+      currentValues = [];
+      sliderScroll.innerHTML = '';
+
+      switch(part) {
+        case 'year':
+          // 生成前后10年的选项
+          for (let i = currentDateTime.year - 10; i <= currentDateTime.year + 10; i++) {
+            currentValues.push(i);
+          }
+          break;
+        case 'month':
+          // 生成1-12月
+          for (let i = 1; i <= 12; i++) {
+            currentValues.push(i);
+          }
+          break;
+        case 'day':
+          // 生成1-31日（根据月份和年份调整）
+          const daysInMonth = new Date(currentDateTime.year, currentDateTime.month, 0).getDate();
+          for (let i = 1; i <= daysInMonth; i++) {
+            currentValues.push(i);
+          }
+          break;
+        case 'hour':
+          // 生成0-23时
+          for (let i = 0; i < 24; i++) {
+            currentValues.push(i);
+          }
+          break;
+        case 'minute':
+          // 生成0-59分
+          for (let i = 0; i < 60; i++) {
+            currentValues.push(i);
+          }
+          break;
+      }
+
+      // 生成滑动选项
+      currentValues.forEach((value, index) => {
+        const div = document.createElement('div');
+        div.className = 'slider-value';
+        div.textContent = value;
+        div.dataset.index = index;
+        sliderScroll.appendChild(div);
+
+        // 添加点击直接选择功能
+        div.addEventListener('click', function() {
+          currentIndex = index;
+          currentDateTime[currentPart] = currentValues[currentIndex];
+          updateDateTimeDisplay();
+          updateHiddenInput();
+          closeSliderPicker();
+        });
+      });
+
+      // 添加鼠标滚轮事件
+      sliderScroll.addEventListener('wheel', function(e) {
+        e.preventDefault();
+        if (e.deltaY < 0) {
+          // 向上滚动
+          currentIndex = Math.max(0, currentIndex - 1);
+        } else {
+          // 向下滚动
+          currentIndex = Math.min(currentValues.length - 1, currentIndex + 1);
+        }
+        updateSliderPosition();
+      });
+    }
+
+    // 更新滑动选择器位置
+    function updateSliderPosition() {
+      const valueHeight = 30;
+      const centerOffset = 75; // 150px高度的一半减去15px
+      const translateY = centerOffset - (currentIndex * valueHeight);
+      sliderScroll.style.transform = `translateY(${translateY}px)`;
+
+      // 更新高亮
+      document.querySelectorAll('.slider-value').forEach((v, i) => {
+        v.classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    // 调整日期时间值
+    function adjustDateTime(part, isIncrease) {
+      let value = currentDateTime[part];
+
+      switch(part) {
+        case 'year':
+          value += isIncrease ? 1 : -1;
+          break;
+        case 'month':
+          value += isIncrease ? 1 : -1;
+          if (value < 1) value = 12;
+          if (value > 12) value = 1;
+          break;
+        case 'day':
+          const daysInMonth = new Date(currentDateTime.year, currentDateTime.month, 0).getDate();
+          value += isIncrease ? 1 : -1;
+          if (value < 1) value = daysInMonth;
+          if (value > daysInMonth) value = 1;
+          break;
+        case 'hour':
+          value += isIncrease ? 1 : -1;
+          if (value < 0) value = 23;
+          if (value > 23) value = 0;
+          break;
+        case 'minute':
+          value += isIncrease ? 1 : -1;
+          if (value < 0) value = 59;
+          if (value > 59) value = 0;
+          break;
+      }
+
+      currentDateTime[part] = value;
+      updateDateTimeDisplay();
+      updateHiddenInput();
+    }
+
+    // 更新日期时间显示
+    function updateDateTimeDisplay() {
+      document.getElementById('yearValue').textContent = currentDateTime.year;
+      document.getElementById('monthValue').textContent = currentDateTime.month;
+      document.getElementById('dayValue').textContent = currentDateTime.day;
+      document.getElementById('hourValue').textContent = currentDateTime.hour.toString().padStart(2, '0');
+      document.getElementById('minuteValue').textContent = currentDateTime.minute.toString().padStart(2, '0');
+    }
+
+    // 更新隐藏的输入框
+    function updateHiddenInput() {
+      const year = currentDateTime.year;
+      const month = currentDateTime.month.toString().padStart(2, '0');
+      const day = currentDateTime.day.toString().padStart(2, '0');
+      const hour = currentDateTime.hour.toString().padStart(2, '0');
+      const minute = currentDateTime.minute.toString().padStart(2, '0');
+
+      hiddenInput.value = `${year}-${month}-${day}T${hour}:${minute}`;
+    }
+  });
+</script>
+</body>
 </html>

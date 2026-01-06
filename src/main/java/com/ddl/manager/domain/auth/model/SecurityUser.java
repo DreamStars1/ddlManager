@@ -4,6 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -12,7 +13,9 @@ import java.util.stream.Collectors;
  * @author zhenghaipei
  * @since 2025-12-13
  */
-public class SecurityUser implements UserDetails {
+public class SecurityUser implements UserDetails, Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /** 用户实体 */
     private final UserEntity user;
@@ -82,5 +85,13 @@ public class SecurityUser implements UserDetails {
      */
     public String getEmail() {
         return user.getEmail();
+    }
+
+    /**
+     * 获取用户实体
+     * @return 用户实体
+     */
+    public UserEntity getUser() {
+        return user;
     }
 }

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}">管理员仪表盘</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-brand">DDL管理系统 - 管理员</div>
+        <div class="nav-menu">
+            <a th:href="@{/admin/dashboard}"
+               th:classappend="${activeMenu == 'dashboard'} ? 'active' : ''">仪表盘</a>
+            <a th:href="@{/admin/users}"
+               th:classappend="${activeMenu == 'users'} ? 'active' : ''">用户管理</a>
+            <a th:href="@{/admin/statistics}"
+               th:classappend="${activeMenu == 'statistics'} ? 'active' : ''">系统统计</a>
+            <a th:href="@{/dashboard}">返回主站</a>
+            <a th:href="@{/logout}">退出</a>
+        </div>
+    </nav>
+
+    <!-- 内容区域 -->
+    <div class="content">
+        <h1 th:text="${pageTitle}">管理员仪表盘</h1>
+
+        <div class="stats-cards">
+            <div class="stat-card">
+                <h3>总用户数</h3>
+                <span class="stat-number">2</span>
+            </div>
+            <div class="stat-card">
+                <h3>今日登录</h3>
+                <span class="stat-number">1</span>
+            </div>
+            <div class="stat-card">
+                <h3>在线用户</h3>
+                <span class="stat-number">1</span>
+            </div>
+        </div>
+
+        <div class="quick-actions">
+            <h3>快捷操作</h3>
+            <div class="action-buttons">
+                <a th:href="@{/admin/users}" class="btn btn-primary">用户管理</a>
+                <a th:href="@{/admin/statistics}" class="btn btn-secondary">查看统计</a>
+                <a th:href="@{/api/admin/session/statistics}" class="btn btn-info">Session监控</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
