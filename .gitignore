@@ -74,3 +74,6 @@ docker-compose.override.yml
 *.bak
 *.tmp
 *.swp
+
+#resource中的图片
+src/main/resources/static/images/image

@@ -75,6 +75,7 @@ public class DataInitializer implements CommandLineRunner {
                     .username("user")
                     .password(passwordEncoder.encode("123456"))
                     .email("user@test.com")
+                    .avatar("/images/0.jpg")
                     .enabled(true)
                     .roles(roles)
                     .build();
@@ -98,6 +99,7 @@ public class DataInitializer implements CommandLineRunner {
                     .username("admin")
                     .password(passwordEncoder.encode("admin123"))
                     .email("admin@test.com")
+                    .avatar("/images/0.jpg")
                     .enabled(true)
                     .roles(roles)
                     .build();
