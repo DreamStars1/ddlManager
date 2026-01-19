@@ -1,5 +1,6 @@
 package com.ddl.manager.domain.auth.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -49,5 +50,6 @@ public class RoleEntity implements Serializable {
     /** 关联的用户 */
     @ManyToMany(mappedBy = "roles")
     @Builder.Default
+    @JsonIgnore
     private Set<UserEntity> users = new HashSet<>();
 }

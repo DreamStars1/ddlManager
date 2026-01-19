@@ -135,6 +135,13 @@ spring:
           starttls:
             enable: true
 
+  servlet:
+    multipart:
+      enabled: true                  # 启用文件上传（默认开启）
+      max-file-size: -1              # 单个文件大小：-1 = 无限制
+      max-request-size: -1           # 单次请求总文件大小：-1 = 无限制
+      file-size-threshold: 0         # 阈值设为0，所有文件都写入磁盘（避免内存溢出）
+
 # Kafka 配置已移至 profile 配置文件
 # application-local.yml 和 application-docker.yml 中都有 Kafka 配置
 
