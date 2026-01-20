@@ -1,84 +1,124 @@
 package com.ddl.manager.domain.auth.controller;
 
 import com.ddl.manager.domain.auth.dto.RegisterDTO;
+import com.ddl.manager.domain.auth.dto.LoginDTO;
 import com.ddl.manager.domain.auth.service.UserService;
+import com.ddl.manager.common.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 /**
- * 认证控制器
- * @author zhenghaipei
- * @since 2025-12-14
+ * 认证控制器（前后端分离版）
+ * 提供登录、注册、登出的RESTful API接口
  */
 @Slf4j
-@Controller
+@RestController
+@RequestMapping("/auth")  // 统一接口前缀
 public class AuthController {
 
     @Autowired
     private UserService userService;
 
     /**
-     * 登录页面
-     * @return 登录页面视图
+     * 用户登录接口
+     * @param loginDTO 登录凭证
+     * @return 登录结果（包含token等信息）
+     * 示例请求数据：
+     * {
+     *   "username": "admin",
+     *   "password": "123456"
+     * }
+     * 示例响应数据：
+     * {
+     *     "code": 20000,
+     *     "msg": "登录成功",
+     *     "data": {
+     *         "user": {
+     *             "lastLogin": "2026-01-20T06:21:22.174+00:00",
+     *             "role": "ADMIN",
+     *             "createTime": "2026-01-19T21:54:54.695",
+     *             "updateTime": "2026-01-19T21:54:54.695",
+     *             "avatar": "/images/0.jpg",
+     *             "userId": 2,
+     *             "email": "admin@test.com",
+     *             "username": "admin"
+     *         },
+     *         "token": 这个写不了不然过不了检查
+     *     }
+     * }
      */
-    @GetMapping("/login")
-    public String loginPage() {
-        return "login";
-    }
-
-    /**
-     * 注册页面
-     * @param model 模型
-     * @return 注册页面视图
-     */
-    @GetMapping("/register")
-    public String registerPage(Model model) {
-        if (!model.containsAttribute("registerDTO")) {
-            model.addAttribute("registerDTO", new RegisterDTO());
+    @PostMapping("/login")
+    public Result<?> login(@Valid @RequestBody LoginDTO loginDTO) {
+        try {
+            // 调用服务层完成登录逻辑，返回包含token的登录结果
+            Object loginResult = userService.login(loginDTO);
+            return Result.success("登录成功", loginResult);
+        } catch (Exception e) {
+            log.error("用户登录失败", e);
+            return Result.error(e.getMessage());
         }
-        return "register";
     }
 
     /**
-     * 处理用户注册
+     * 用户注册接口
      * @param registerDTO 注册信息
-     * @param bindingResult 校验结果
-     * @param redirectAttributes 重定向属性
-     * @return 重定向地址
+     * @return 注册结果
+     * 示例请求数据：
+     * {
+     *   "username": "testuser",
+     *   "password": "123456",
+     *   "email": "test@example.com",
+     *   "avatar": "avatar.jpg"
+     * }
+     * 示例响应数据：
+     * {
+     *   "code": 200,
+     *   "msg": "注册成功，请登录",
+     *   "data": null
+     * }
      */
     @PostMapping("/register")
-    public String register(@Valid RegisterDTO registerDTO,
-                          BindingResult bindingResult,
-                          RedirectAttributes redirectAttributes) {
-        // 1. 参数校验
-        if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("errorMessage", 
-                    bindingResult.getFieldErrors().get(0).getDefaultMessage());
-            redirectAttributes.addFlashAttribute("registerDTO", registerDTO);
-            return "redirect:/register";
-        }
-
+    public Result<?> register(
+            @Valid @ModelAttribute @RequestPart("registerDTO") RegisterDTO registerDTO,  // 接收JSON格式的表单数据
+            @RequestPart(value = "avatar", required = false) MultipartFile avatar) {  // 接收头像文件（非必传）
         try {
-            // 2. 调用服务层注册用户
-            userService.register(registerDTO);
-            
-            // 3. 注册成功，重定向到登录页
-            redirectAttributes.addFlashAttribute("successMessage", "注册成功，请登录");
-            return "redirect:/login";
+            // 调用服务层注册用户
+            userService.register(registerDTO, avatar);
+            // 返回成功结果，无需重定向
+            return Result.success("注册成功，请登录");
         } catch (Exception e) {
-            // 4. 注册失败，返回错误信息
             log.error("用户注册失败", e);
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
-            redirectAttributes.addFlashAttribute("registerDTO", registerDTO);
-            return "redirect:/register";
+            // 返回错误信息
+            return Result.error(e.getMessage());
+        }
+    }
+
+    /**
+     * 用户登出接口
+     * @param request 请求对象（用于获取当前登录用户信息/清理session）
+     * @return 登出结果
+     * 示例请求：POST /auth/logout （无需请求体）
+     * 示例响应数据：
+     * {
+     *   "code": 200,
+     *   "msg": "登出成功",
+     *   "data": null
+     * }
+     */
+    @PostMapping("/logout")
+    public Result<?> logout(HttpServletRequest request) {
+        try {
+            // 调用服务层完成登出逻辑（如清理token、session等）
+            userService.logout(request);
+            return Result.success("登出成功");
+        } catch (Exception e) {
+            log.error("用户登出失败", e);
+            return Result.error(e.getMessage());
         }
     }
 }

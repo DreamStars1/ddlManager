@@ -1,4 +1,3 @@
-// src/main/java/com/ddl/manager/domain/statistics/service/impl/StatisticsServiceImpl.java
 package com.ddl.manager.domain.statistics.service.impl;
 
 import com.ddl.manager.domain.statistics.dto.ApiStatistics;
@@ -8,6 +7,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -25,47 +25,95 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public void incrementCallCount(String apiName, String apiPath) {
-        String key = apiPath;
+        // 空值校验
+        if (apiName == null || apiPath == null) {
+            throw new IllegalArgumentException("API名称和路径不能为空");
+        }
 
         // 更新内存统计
-        ApiStatistics stats = inMemoryStats.computeIfAbsent(key, k -> new ApiStatistics(apiName, apiPath));
+        ApiStatistics stats = inMemoryStats.computeIfAbsent(apiPath, k -> new ApiStatistics(apiName, apiPath));
         stats.getCallCount().incrementAndGet();
         stats.setLastCallTime(System.currentTimeMillis());
 
-        // 更新Redis统计
-        redisTemplate.opsForValue().increment(REDIS_KEY_PREFIX + "count:" + key, 1);
-        redisTemplate.opsForValue().set(REDIS_KEY_PREFIX + "name:" + key, apiName, EXPIRATION_TIME, TimeUnit.SECONDS);
+        try {
+            // 更新Redis统计 - 使用Long类型避免类型转换问题
+            String countKey = REDIS_KEY_PREFIX + "count:" + apiPath;
+            redisTemplate.opsForValue().increment(countKey, 1);
+            redisTemplate.expire(countKey, EXPIRATION_TIME, TimeUnit.SECONDS);
 
-        // 只设置一次首次调用时间
-        if (!redisTemplate.hasKey(REDIS_KEY_PREFIX + "first:" + key)) {
-            redisTemplate.opsForValue().set(REDIS_KEY_PREFIX + "first:" + key, System.currentTimeMillis(),
+            String nameKey = REDIS_KEY_PREFIX + "name:" + apiPath;
+            redisTemplate.opsForValue().set(nameKey, apiName, EXPIRATION_TIME, TimeUnit.SECONDS);
+
+            String firstKey = REDIS_KEY_PREFIX + "first:" + apiPath;
+            // 只设置一次首次调用时间
+            if (Boolean.FALSE.equals(redisTemplate.hasKey(firstKey))) {
+                redisTemplate.opsForValue().set(firstKey, System.currentTimeMillis(),
+                        EXPIRATION_TIME, TimeUnit.SECONDS);
+            }
+
+            String lastKey = REDIS_KEY_PREFIX + "last:" + apiPath;
+            redisTemplate.opsForValue().set(lastKey, System.currentTimeMillis(),
                     EXPIRATION_TIME, TimeUnit.SECONDS);
+        } catch (Exception e) {
+            // Redis操作失败时仅打印日志，不影响内存统计
+            System.err.println("Redis统计更新失败: " + e.getMessage());
         }
-        redisTemplate.opsForValue().set(REDIS_KEY_PREFIX + "last:" + key, System.currentTimeMillis(),
-                EXPIRATION_TIME, TimeUnit.SECONDS);
     }
 
     @Override
     public List<ApiStatistics> getAllStatistics() {
         List<ApiStatistics> result = new ArrayList<>();
 
-        // 从Redis获取所有统计数据
-        Set<String> keys = redisTemplate.keys(REDIS_KEY_PREFIX + "count:*");
-        if (keys != null) {
-            for (String key : keys) {
-                String apiPath = key.replace(REDIS_KEY_PREFIX + "count:", "");
-                String apiName = (String) redisTemplate.opsForValue().get(REDIS_KEY_PREFIX + "name:" + apiPath);
-                Integer count = (Integer)redisTemplate.opsForValue().get(key);
-                Long firstCall = (Long) redisTemplate.opsForValue().get(REDIS_KEY_PREFIX + "first:" + apiPath);
-                Long lastCall = (Long) redisTemplate.opsForValue().get(REDIS_KEY_PREFIX + "last:" + apiPath);
+        try {
+            // 从Redis获取所有统计数据
+            Set<String> keys = redisTemplate.keys(REDIS_KEY_PREFIX + "count:*");
+            if (keys != null && !keys.isEmpty()) {
+                for (String key : keys) {
+                    try {
+                        String apiPath = key.replace(REDIS_KEY_PREFIX + "count:", "");
 
-                ApiStatistics stats = new ApiStatistics(apiName, apiPath);
-                stats.getCallCount().set(count.intValue());
-                stats.setFirstCallTime(firstCall);
-                stats.setLastCallTime(lastCall);
+                        // 安全获取Redis值，增加空值判断和类型转换
+                        String apiName = (String) redisTemplate.opsForValue().get(REDIS_KEY_PREFIX + "name:" + apiPath);
+                        Object countObj = redisTemplate.opsForValue().get(key);
+                        Object firstCallObj = redisTemplate.opsForValue().get(REDIS_KEY_PREFIX + "first:" + apiPath);
+                        Object lastCallObj = redisTemplate.opsForValue().get(REDIS_KEY_PREFIX + "last:" + apiPath);
 
-                result.add(stats);
+                        // 空值校验
+                        if (apiName == null || apiPath == null) {
+                            continue;
+                        }
+
+                        ApiStatistics stats = new ApiStatistics(apiName, apiPath);
+
+                        // 安全转换计数（兼容Long/Integer）
+                        if (countObj != null) {
+                            int count = 0;
+                            if (countObj instanceof Long) {
+                                count = ((Long) countObj).intValue();
+                            } else if (countObj instanceof Integer) {
+                                count = (Integer) countObj;
+                            }
+                            stats.getCallCount().set(count);
+                        }
+
+                        // 时间戳转换
+                        if (firstCallObj instanceof Long) {
+                            stats.setFirstCallTime((Long) firstCallObj);
+                        }
+                        if (lastCallObj instanceof Long) {
+                            stats.setLastCallTime((Long) lastCallObj);
+                        }
+
+                        result.add(stats);
+                    } catch (Exception e) {
+                        // 单个Key处理失败不影响整体
+                        System.err.println("处理Redis统计数据失败 key=" + key + ": " + e.getMessage());
+                        continue;
+                    }
+                }
             }
+        } catch (Exception e) {
+            System.err.println("获取Redis统计数据失败: " + e.getMessage());
         }
 
         // 如果Redis中没有数据，使用内存中的数据
@@ -78,12 +126,14 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public void resetAllStatistics() {
-        // 1. 重置Redis中的所有API统计数据（精准匹配前缀）
-        // 匹配 "api_stats:" 开头的所有Key
-        Set<String> allStatsKeys = redisTemplate.keys(REDIS_KEY_PREFIX + "*");
-        if (allStatsKeys != null && !allStatsKeys.isEmpty()) {
-            // 批量删除所有匹配的Key（高效批量操作）
-            redisTemplate.delete(allStatsKeys);
+        try {
+            // 1. 重置Redis中的所有API统计数据（精准匹配前缀）
+            Set<String> allStatsKeys = redisTemplate.keys(REDIS_KEY_PREFIX + "*");
+            if (allStatsKeys != null && !allStatsKeys.isEmpty()) {
+                redisTemplate.delete(allStatsKeys);
+            }
+        } catch (Exception e) {
+            System.err.println("重置Redis统计数据失败: " + e.getMessage());
         }
 
         // 2. 重置内存中的统计数据

@@ -67,7 +67,7 @@ public class UserEntity extends BaseEntity implements Serializable {
     @Builder.Default
     private Boolean emailNotificationEnabled = true;
 
-    @Column(nullable = false)
+    @Column
     private String avatar;
 
     /** 用户角色 */
