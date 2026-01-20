@@ -23,4 +23,4 @@ jobs:
     - name: Compile and Test
       # 改为 install 或 verify，这样会执行编译和单元测试
       # 如果你们还没写单元测试，可以用 mvn compile，速度最快
-      run: mvn -B clean compile
+      run: mvn compile
