@@ -157,6 +157,13 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- JWT依赖 -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+
         <!-- Mockito Inline - 支持 mock final 类 -->
         <dependency>
             <groupId>org.mockito</groupId>
