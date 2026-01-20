@@ -144,7 +144,8 @@ public class AdminController {
      *   "data": {
      *     "totalUsers": 10,
      *     "todayLogin": 100,
-     *     "onlineUsers": 10
+     *     "onlineUsers": 10,
+     *     "totalSessions": 1000
      *   }
      * }
      */

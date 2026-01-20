@@ -35,13 +35,20 @@ public class AuthController {
      * }
      * 示例响应数据：
      * {
-     *     "code": 200,
+     *     "code": 20000,
      *     "msg": "登录成功",
      *     "data": {
-     *         "role": USER,
-     *         "avatar": null,
-     *         "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0IiwidXNlcklkIjozLCJpYXQiOjE3Njg4MzMxNDQsImV4cCI6MTc2ODkxOTU0NH0.EukMltN7xexTsmHr9iz3QthbUq-tdYPffDBhPH-BbKGy-pxObD-f7SiiCfk18EEVpW0BaVRAyGUZuHXNVBJFaA",
-     *         "username": "1234"
+     *         "user": {
+     *             "lastLogin": "2026-01-20T06:21:22.174+00:00",
+     *             "role": "ADMIN",
+     *             "createTime": "2026-01-19T21:54:54.695",
+     *             "updateTime": "2026-01-19T21:54:54.695",
+     *             "avatar": "/images/0.jpg",
+     *             "userId": 2,
+     *             "email": "admin@test.com",
+     *             "username": "admin"
+     *         },
+     *         "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc2ODg5MDA4MiwiZXhwIjoxNzY4ODk3MjgyfQ.aDTm7gRFdUcSSrbwLIf5YRjCQdR36h8O3iFFQ-XFYpkLP0p1Qr78D37CfAoIvbk90OxHLBknREmhlJg-6QNgRg"
      *     }
      * }
      */

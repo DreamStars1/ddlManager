@@ -18,7 +18,7 @@ public class Result<T> {
     // 成功响应（带数据）
     public static <T> Result<T> success(String msg, T data) {
         Result<T> result = new Result<>();
-        result.setCode(200);
+        result.setCode(20000);
         result.setMsg(msg);
         result.setData(data);
         return result;

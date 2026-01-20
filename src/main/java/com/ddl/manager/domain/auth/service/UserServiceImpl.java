@@ -92,21 +92,29 @@ public class UserServiceImpl implements UserService {
         String token = jwtTokenUtil.generateToken(userDetails);
 
         // 6. 构造返回结果（匹配控制器示例数据格式）
-        Map<String, Object> result = new HashMap<>();
-        result.put("token", token);
-        result.put("username", user.getUsername());
+        Map<String, Object> userResult = new HashMap<>();
+        userResult.put("username", user.getUsername());
         Set<RoleEntity> roleEntities = user.getRoles();
         for (RoleEntity roleEntitie : roleEntities) {
             if (roleEntitie.getCode().equals("ROLE_ADMIN")) {
-                result.put("role", "ADMIN");
+                userResult.put("role", "ADMIN");
                 break;
             }
         }
-        result.putIfAbsent("role", "USER");
-        result.put("roles", user.getRoles());
-        result.put("avatar", user.getAvatar());
+        userResult.putIfAbsent("role", "USER");
+        userResult.put("avatar", user.getAvatar());
+        userResult.put("userId", user.getId());
+        userResult.put("email", user.getEmail());
+        userResult.put("createTime", user.getCreateTime());
+        userResult.put("updateTime", user.getUpdateTime());
+        userResult.put("lastLogin", new Date());
+        Map<String, Object> results = new HashMap<>();
+        results.put("user", userResult);
+        results.put("token", token);
 
-        return result;
+        redisSessionService.recordUserLoginToday(loginDTO.getUsername());
+
+        return results;
     }
 
     /**
@@ -256,12 +264,8 @@ public class UserServiceImpl implements UserService {
     public SessionStatsDTO getSessionStatistics() {
         SessionStatsDTO stats = new SessionStatsDTO();
 
-        // 1. 总用户数：优先Redis，无则查DB并更新Redis
-        Long totalUsers = redisSessionService.getTotalUserCount();
-        if (totalUsers == 0) {
-            totalUsers = userRepository.count(); // 从数据库查询总用户数
-            redisSessionService.updateTotalUserCount(totalUsers); // 更新到Redis
-        }
+        // 1. 总用户数
+        Long totalUsers = userRepository.count();
         stats.setTotalUsers(totalUsers);
 
         // 2. 今日登录数：从Redis的今日登录Set中统计
@@ -271,6 +275,10 @@ public class UserServiceImpl implements UserService {
         // 3. 在线用户数：复用现有getOnlineUserCount方法（基于Session Key统计）
         long onlineUsers = redisSessionService.getOnlineUserCount();
         stats.setOnlineUsers(onlineUsers);
+
+        // 4. 总会话数：从Redis中统计
+        Set<String> keys = redisTemplate.keys("spring:session:sessions:*");
+        stats.setTotalSessions((long) keys.size());
 
         log.info("会话统计数据（基于RedisSessionService）：总用户数={}, 今日登录={}, 在线用户数={}",
                 totalUsers, todayLogin, onlineUsers);

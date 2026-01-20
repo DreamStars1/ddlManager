@@ -97,11 +97,16 @@ public class RedisSessionService {
 
     public long getOnlineUserCount() {
         try {
+        // 构建用于匹配Redis键的模式字符串，使用USER_SESSION_PREFIX作为前缀
             String pattern = USER_SESSION_PREFIX + "*";
+        // 根据模式从Redis中获取所有匹配的键集合
             Set<String> keys = redisTemplate.keys(pattern);
-            return keys == null ? 0 : keys.size();
+        // 返回匹配到的键的数量，即为在线用户数量
+            return keys.size();
         } catch (Exception e) {
+        // 记录获取在线用户数量失败的错误日志
             log.error("获取在线用户数量失败", e);
+        // 发生异常时返回0，表示无法获取在线用户数量
             return 0;
         }
     }
@@ -132,31 +137,6 @@ public class RedisSessionService {
         } catch (Exception e) {
             log.error("获取今日登录用户数失败", e);
             return 0;
-        }
-    }
-
-    /**
-     * 更新总用户数到Redis（用户注册/删除时调用）
-     */
-    public void updateTotalUserCount(Long totalCount) {
-        try {
-            redisTemplate.opsForValue().set(TOTAL_USER_COUNT_KEY, totalCount);
-            log.debug("更新总用户数到Redis: {}", totalCount);
-        } catch (Exception e) {
-            log.error("更新总用户数失败", e);
-        }
-    }
-
-    /**
-     * 获取总用户数（优先Redis，无则返回0）
-     */
-    public Long getTotalUserCount() {
-        try {
-            Object countObj = redisTemplate.opsForValue().get(TOTAL_USER_COUNT_KEY);
-            return countObj == null ? 0 : Long.parseLong(countObj.toString());
-        } catch (Exception e) {
-            log.error("获取总用户数失败", e);
-            return 0L;
         }
     }
 }

@@ -14,4 +14,6 @@ public class SessionStatsDTO {
     private Long todayLogin;
     /** 当前在线用户数 */
     private Long onlineUsers;
-}
+    /** 总会话数 */
+    private Long totalSessions;
+ }
