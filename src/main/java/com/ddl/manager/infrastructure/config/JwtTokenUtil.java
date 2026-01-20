@@ -11,12 +11,12 @@ import java.util.Date;
 @Component
 public class JwtTokenUtil {
     // 密钥（建议配置在 application.yml 中）
-    @Value("${jwt.secret:your-secret-key}")
+    @Value("${jwt.secret}")
     private String secret;
 
     // 过期时间（例如 2 小时）
     @Getter
-    @Value("${jwt.expiration:7200000}")
+    @Value("${jwt.expiration}")
     private long expiration;
 
     // 生成 Token
