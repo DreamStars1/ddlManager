@@ -48,7 +48,7 @@ public class AuthController {
      *             "email": "admin@test.com",
      *             "username": "admin"
      *         },
-     *         "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc2ODg5MDA4MiwiZXhwIjoxNzY4ODk3MjgyfQ.aDTm7gRFdUcSSrbwLIf5YRjCQdR36h8O3iFFQ-XFYpkLP0p1Qr78D37CfAoIvbk90OxHLBknREmhlJg-6QNgRg"
+     *         "token": 这个写不了不然过不了检查
      *     }
      * }
      */
